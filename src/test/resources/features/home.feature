@@ -1,5 +1,14 @@
 @HomeScenarios
-  Feature: Home scenarios
-    @test
-    Scenario: Verify text is displayed
-      Then I should see text "Looking for a dream job?" is displayed
+Feature: Home scenarios
+
+  @AD-6
+  Scenario Outline: Verify navigation bar buttons
+    Then Verify button "<button name>" is displayed
+    Examples:
+      | button name |
+      | Get Support |
+      | Job Career  |
+      | Feedback    |
+      | English     |
+      | Spanish     |
+      | French      |

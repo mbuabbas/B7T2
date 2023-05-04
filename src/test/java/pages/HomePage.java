@@ -10,6 +10,13 @@ public class HomePage {
         PageFactory.initElements(BrowserUtils.getDriver(), this);
     }
 
-    @FindBy(xpath = "//div[@class='text'][text()='Looking for a dream job?']")
-    public WebElement test;
+    @FindBy(xpath = "//div[@class='container']//a[text()='Get Support']")
+    public WebElement getSupportNavBtn;
+    @FindBy(xpath = "//div[@class='container']//a[text()='Job Career']")
+    public  WebElement jobCareerNavBtn;
+    @FindBy(xpath = "//div[@class='container']//a[text()='Feedback']")
+    public WebElement feedBackNavBtn;
+    @FindBy(xpath = "//div[@class='container']//a[@id='dropdownMenu1']")
+    public WebElement languagePlace;
+
 }
