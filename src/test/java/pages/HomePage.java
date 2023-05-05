@@ -17,6 +17,13 @@ public class HomePage {
     @FindBy(xpath = "//div[@class='container']//a[text()='Feedback']")
     public WebElement feedBackNavBtn;
     @FindBy(xpath = "//div[@class='container']//a[@id='dropdownMenu1']")
-    public WebElement languagePlace;
+    public WebElement languageBtn;
+    @FindBy(xpath = "//a[text()='English']")
+    public WebElement englishBtn;
+    @FindBy(xpath = "//a[text()='Spanish']")
+    public WebElement spanishBtn;
+    @FindBy(xpath = "//a[text()='French']")
+    public WebElement frenchBtn;
+
 
 }

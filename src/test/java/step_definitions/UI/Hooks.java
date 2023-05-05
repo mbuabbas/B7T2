@@ -1,4 +1,4 @@
-package step_definitions;
+package step_definitions.UI;
 
 
 import io.cucumber.java.After;
