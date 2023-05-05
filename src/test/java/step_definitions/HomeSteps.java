@@ -8,14 +8,21 @@ import utils.BrowserUtils;
 
 public class HomeSteps {
     HomePage page;
+
     public HomeSteps() {
         page = new HomePage();
     }
+
     @Then("I should see text {string} is displayed")
     public void i_should_see_text_is_displayed(String text) {
         BrowserUtils.assertEquals(BrowserUtils.getText(page.test), text);
     }
 
+    @Then("Verify title of the homepage be {string}")
+    public void verifyTitleOfTheHomepageBe(String title) {
+        BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), title);
+
+    }
     @Then("Verify {string} button is visible")
     public void verify_button_is_visible(String btnName)
     {
