@@ -1,4 +1,4 @@
-package step_definitions.UI;
+package step_definitions;
 
 import io.cucumber.java.en.Then;
 import pages.HomePage;
