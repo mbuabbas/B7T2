@@ -55,7 +55,7 @@
                 <configuration>
                     <forkCount>4</forkCount>
                     <includes>
-                        <include>**/*Runner.class</include>
+                        <include>CukesRunner.class</include>
                     </includes>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
