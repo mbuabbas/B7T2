@@ -3,3 +3,6 @@
     @test
     Scenario: Verify text is displayed
       Then I should see text "Looking for a dream job?" is displayed
+      @AD-5
+      Scenario: Verify title of the homepage should be "Advance Systems - Home"
+        Then Verify title of the homepage be "Advance Systems - Home"

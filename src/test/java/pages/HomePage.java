@@ -12,4 +12,6 @@ public class HomePage {
 
     @FindBy(xpath = "//div[@class='text'][text()='Looking for a dream job?']")
     public WebElement test;
+    @FindBy(xpath = "//head//title")
+    public WebElement homePageTitle;
 }
