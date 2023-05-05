@@ -25,7 +25,7 @@ public class BrowserUtils {
     public static WebDriver getDriver(){
         if (driver == null){
             if(ConfigReader.readProperty("config.properties", "runInSauselabs")
-                    .equalsIgnoreCase("false")){
+                    .equalsIgnoreCase("true")){
                 getRemoteDriver();
             } else {
                 initializeDriver("chrome");
