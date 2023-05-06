@@ -3,6 +3,7 @@ package step_definitions.UI;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import pages.HomePage;
 import utils.BrowserUtils;
 
@@ -105,6 +106,9 @@ public class HomeSteps {
             case "contact us":
                 BrowserUtils.click(page.contactUsBtns.get(1));
                 break;
+            case "scroll to top":
+                BrowserUtils.click(page.scrollToTop);
+                break;
             default:
                 Assert.fail("Invalid button");
         }
@@ -115,26 +119,11 @@ public class HomeSteps {
     public void verifyTitleOfThePageIs(String title)
     {
         BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), title);
-//        switch (title.toLowerCase())
-//        {
-//            case "advance system - home":
-//                BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), title);
-//                break;
-//            case "advance system - about us":
-//                BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), title);
-//                break;
-//            case "advance system - services":
-//                BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), title);
-//                break;
-//            case "advance system - clients":
-//                BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), title);
-//                break;
-//            case "advance system - join us":
-//                BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), title);
-//                break;
-//            case "advance system - contact us":
-//                BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), title);
-//                break;
-//        }
+    }
+
+    @Then("Verify that button {string} is Displayed without using move in to view method")
+    public void verifyThatButtonIsDisplayedWithoutUsingMoveInToViewMethod(String button)
+    {
+        BrowserUtils.isDisplayedWithNoMoveInToView(page.applyNowBtn);
     }
 }

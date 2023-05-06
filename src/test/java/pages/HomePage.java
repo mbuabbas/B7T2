@@ -43,5 +43,8 @@ public class HomePage {
     public List<WebElement> joinUsBtns = new ArrayList<>();
     @FindBy(xpath = "//a[text()='Contact Us']")
     public List<WebElement> contactUsBtns = new ArrayList<>();
-
+    @FindBy(xpath = "//span[@class='icon fa fa-arrow-up']")
+    public WebElement scrollToTop;
+    @FindBy(xpath = "//a[text()='Apply now']")
+    public WebElement applyNowBtn;
 }
