@@ -3,6 +3,7 @@ package step_definitions.UI;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import pages.HomePage;
 import utils.BrowserUtils;
 
@@ -80,5 +81,49 @@ public class HomeSteps {
     public void scrollDownTheHomepage()
     {
         BrowserUtils.moveIntoView(page.welcomeHeader);
+    }
+
+    @When("Click on {string} button")
+    public void clickOnButton(String btnName)
+    {
+        switch (btnName.toLowerCase())
+        {
+            case "home":
+                BrowserUtils.click(page.homeBtns.get(1));
+                break;
+            case "about us":
+                BrowserUtils.click(page.aboutUsBtns.get(1));
+                break;
+            case "services":
+                BrowserUtils.click(page.servicesBtns.get(1));
+                break;
+            case "clients":
+                BrowserUtils.click(page.clientsBtn);
+                break;
+            case "join us":
+                BrowserUtils.click(page.joinUsBtns.get(1));
+                break;
+            case "contact us":
+                BrowserUtils.click(page.contactUsBtns.get(1));
+                break;
+            case "scroll to top":
+                BrowserUtils.click(page.scrollToTop);
+                break;
+            default:
+                Assert.fail("Invalid button");
+        }
+
+    }
+
+    @Then("Verify title of the page is {string}")
+    public void verifyTitleOfThePageIs(String title)
+    {
+        BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), title);
+    }
+
+    @Then("Verify that button {string} is Displayed without using move in to view method")
+    public void verifyThatButtonIsDisplayedWithoutUsingMoveInToViewMethod(String button)
+    {
+        BrowserUtils.isDisplayedWithNoMoveInToView(page.applyNowBtn);
     }
 }
