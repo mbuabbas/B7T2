@@ -49,11 +49,10 @@ public class HomeSteps {
         BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), title);
 
     }
+
     @Then("Verify {string} button is visible")
-    public void verify_button_is_visible(String btnName)
-    {
-        switch (btnName.toLowerCase())
-        {
+    public void verify_button_is_visible(String btnName) {
+        switch (btnName.toLowerCase()) {
             case "home":
                 BrowserUtils.isDisplayed(page.homeBtns.get(1));
                 break;
@@ -78,16 +77,13 @@ public class HomeSteps {
     }
 
     @When("Scroll down the homepage")
-    public void scrollDownTheHomepage()
-    {
+    public void scrollDownTheHomepage() {
         BrowserUtils.moveIntoView(page.welcomeHeader);
     }
 
     @When("Click on {string} button")
-    public void clickOnButton(String btnName)
-    {
-        switch (btnName.toLowerCase())
-        {
+    public void clickOnButton(String btnName) {
+        switch (btnName.toLowerCase()) {
             case "home":
                 BrowserUtils.click(page.homeBtns.get(1));
                 break;
@@ -116,14 +112,60 @@ public class HomeSteps {
     }
 
     @Then("Verify title of the page is {string}")
-    public void verifyTitleOfThePageIs(String title)
-    {
+    public void verifyTitleOfThePageIs(String title) {
         BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), title);
     }
 
     @Then("Verify that button {string} is Displayed without using move in to view method")
-    public void verifyThatButtonIsDisplayedWithoutUsingMoveInToViewMethod(String button)
-    {
+    public void verifyThatButtonIsDisplayedWithoutUsingMoveInToViewMethod(String button) {
         BrowserUtils.isDisplayedWithNoMoveInToView(page.applyNowBtn);
+    }
+
+
+    @Then("Verify address: {string} is displayed")
+    public void verifyAddressIsDisplayed(String txt) {
+        BrowserUtils.isDisplayed(page.adressInfo);
+
+    }
+    @Then("Verify contact info: {string} is displayed")
+    public void verifyContactInfoIsDisplayed(String quickContact) {
+
+        BrowserUtils.isDisplayed(page.quickContact);
+    }
+
+    @When("I click on social media button {string}")
+    public void iClickOnSocialMediaButton(String socialMediaBtn) {
+        switch (socialMediaBtn.toLowerCase()){
+            case "facebook":
+                BrowserUtils.click(page.facebookBtn);
+                BrowserUtils.switchToNewWindow();
+                break;
+            case "twitter":
+                BrowserUtils.click(page.twitterBtn);
+                BrowserUtils.switchToNewWindow();
+                break;
+            case "instagram":
+                BrowserUtils.click(page.instagramBtn);
+                BrowserUtils.switchToNewWindow();
+                break;
+            case "linkedin":
+                BrowserUtils.click(page.linkedlnBtn);
+                BrowserUtils.switchToNewWindow();
+                break;
+            default:
+                Assert.fail("Invalid button name");
+
+        }
+    }
+
+    @Then("Verify each button takes user to corresponding page with {string}")
+    public void verifyEachButtonTakesUserToCorrespondingPageWith(String URL) {
+        BrowserUtils.switchToNewWindow();
+        BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(),URL);
+
+    }
+    @Then("Verify {string} is displayed")
+    public void verifyIsDisplayed(String footerInfo) {
+        BrowserUtils.isDisplayed(page.footerInfo);
     }
 }
