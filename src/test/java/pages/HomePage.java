@@ -47,4 +47,7 @@ public class HomePage {
     public WebElement scrollToTop;
     @FindBy(xpath = "//a[text()='Apply now']")
     public WebElement applyNowBtn;
+
+
+
 }
