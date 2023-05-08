@@ -62,3 +62,15 @@ Feature: Home scenarios
     Then Verify "Phone: +1 703-831-3217" is displayed
     Then Verify "Email: Info@advancesystems.us" is displayed
     Then Verify "Mon to Sat: 9.00 am to 5:00 pm" is displayed
+
+  @AD-15
+  Scenario Outline: Verify the social media buttons are displayed and should take you to those pages
+    Then Verify "<social media>" button is visible
+    When Click on "<social media>" button
+    Then Verify each button takes user to corresponding page with "<URL>"
+    Examples:
+      |social media       |URL                       |
+      |Facebook           |https://www.facebook.com/ |
+      |Twitter            |https://twitter.com/      |
+      |Instagram          |https://instagram.com/    |
+      |LinkedIn           |https://www.linkedin.com/ |
