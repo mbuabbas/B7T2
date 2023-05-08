@@ -47,4 +47,29 @@ public class HomePage {
     public WebElement scrollToTop;
     @FindBy(xpath = "//a[text()='Apply now']")
     public WebElement applyNowBtn;
+
+    @FindBy(className = "info-box-one")
+    public WebElement adressInfo;
+
+    @FindBy(xpath= "(//div[@class='info-box-one'])[2]")
+    public WebElement quickContact;
+
+    @FindBy(xpath = "//i[@class='fa fa-facebook-square']")
+    public WebElement facebookBtn;
+
+    @FindBy(xpath = "//i[@class='fa fa-twitter-square']")
+    public WebElement twitterBtn;
+
+    @FindBy(xpath = " //i[@class='fa fa-instagram']")
+    public WebElement instagramBtn;
+
+    @FindBy(xpath = "//i[@class='fa fa-linkedin-square']")
+    public WebElement linkedlnBtn;
+
+    @FindBy(xpath = "(//ul[@class='list-info'])[1]")
+    public WebElement footerInfo;
+
 }
+
+
+
