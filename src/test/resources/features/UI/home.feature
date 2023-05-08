@@ -23,12 +23,25 @@ Feature: Home scenarios
     When Scroll down the homepage
     Then Verify "<button name>" button is visible
     Examples:
-      |button name|
-      |Home       |
-      |About Us   |
-      |Services   |
-      |Clients    |
-      |Join Us    |
-      |Contact Us |
+      | button name |
+      | Home        |
+      | About Us    |
+      | Services    |
+      | Clients     |
+      | Join Us     |
+      | Contact Us  |
+
+  @AD-14
+  Scenario Outline: Verify following links displayed and work as expected by opening corresponding page
+    When I click a "<following links>"
+    Then Verify "<following links>" opening corresponding page
+    Examples:
+      | following links |
+      | Home            |
+      | About Us        |
+      | Services        |
+      | Clients         |
+      | Join Us         |
+      | Contact Us      |
 
 
