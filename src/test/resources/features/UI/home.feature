@@ -25,13 +25,26 @@ Feature: Home scenarios
     When Click on "<button name>" button
     Then Verify title of the page is "Advance Systems - <button name>"
     Examples:
-      |button name|
-      |Home       |
-      |About Us   |
-      |Services   |
-      |Clients    |
-      |Join Us    |
-      |Contact Us |
+      | button name |
+      | Home        |
+      | About Us    |
+      | Services    |
+      | Clients     |
+      | Join Us     |
+      | Contact Us  |
+
+  @AD-14
+  Scenario Outline: Verify following links displayed and work as expected by opening corresponding page
+    When I click a "<following links>"
+    Then Verify "<following links>" opening corresponding page
+    Examples:
+      | following links |
+      | Home            |
+      | About Us        |
+      | Services        |
+      | Clients         |
+      | Join Us         |
+      | Contact Us      |
 
   @AD-17
   Scenario: Verify a button that would scroll the window to top content once clicked
@@ -50,11 +63,11 @@ Feature: Home scenarios
     When I click on social media button "<socialMediaButton>"
     Then Verify each button takes user to corresponding page with "<URL>"
     Examples:
-      |socialMediaButton|URL|
-      | Facebook            | https://www.facebook.com/  |
-      | Twitter             | https://twitter.com/  |
-      | Instagram           | https://www.instagram.com/ |
-      | LinkedIn            | https://www.linkedin.com/  |
+      | socialMediaButton | URL                        |
+      | Facebook          | https://www.facebook.com/  |
+      | Twitter           | https://twitter.com/       |
+      | Instagram         | https://www.instagram.com/ |
+      | LinkedIn          | https://www.linkedin.com/  |
 
   @AD-13
   Scenario: Verify the following information is displayed in footer section:
