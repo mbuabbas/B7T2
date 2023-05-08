@@ -48,11 +48,10 @@ public class HomeSteps {
         BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), title);
 
     }
+
     @Then("Verify {string} button is visible")
-    public void verify_button_is_visible(String btnName)
-    {
-        switch (btnName.toLowerCase())
-        {
+    public void verify_button_is_visible(String btnName) {
+        switch (btnName.toLowerCase()) {
             case "home":
                 BrowserUtils.isDisplayed(page.homeBtns.get(1));
                 break;
@@ -77,8 +76,35 @@ public class HomeSteps {
     }
 
     @When("Scroll down the homepage")
-    public void scrollDownTheHomepage()
-    {
+    public void scrollDownTheHomepage() {
         BrowserUtils.moveIntoView(page.welcomeHeader);
     }
+
+
+
+    @Then("Verify {string} displayed")
+    public void verifyDisplayed(String item) {
+        switch (item) {
+            case "Leadership Development":
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.leadershipDev),item);
+                break;
+
+            case "Capability Building":
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.capabilityBuilding),item);
+                break;
+            case "Rewards & Benefits":
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.rewardsBenefits),item);
+                break;
+            case "Employee & Employer Relations":
+                String employeeItem = "Employee & Employer\nRelations";
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.employeeEmployer),employeeItem);
+                break;
+            case "Excellent Customer Service":
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.customerService),item);
+                break;
+            //default:
+                //Assert.fail("Invalid text");
+        }
+    }
+
 }

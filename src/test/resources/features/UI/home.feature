@@ -23,12 +23,22 @@ Feature: Home scenarios
     When Scroll down the homepage
     Then Verify "<button name>" button is visible
     Examples:
-      |button name|
-      |Home       |
-      |About Us   |
-      |Services   |
-      |Clients    |
-      |Join Us    |
-      |Contact Us |
+      | button name |
+      | Home        |
+      | About Us    |
+      | Services    |
+      | Clients     |
+      | Join Us     |
+      | Contact Us  |
 
-
+  @AD-10
+  Scenario Outline: Verify section with 5 items displayed as a headers and descriptions under it
+    When Scroll down the homepage
+    Then Verify "<item>" displayed
+    Examples:
+      | item                          |
+      | Leadership Development        |
+      | Capability Building           |
+      | Rewards & Benefits            |
+      | Employee & Employer Relations |
+      | Excellent Customer Service    |
