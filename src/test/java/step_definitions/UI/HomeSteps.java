@@ -71,6 +71,18 @@ public class HomeSteps {
             case "contact us":
                 BrowserUtils.isDisplayed(page.contactUsBtns.get(1));
                 break;
+            case "facebook":
+                BrowserUtils.isDisplayed(page.facebookBtns.get(1));
+                break;
+            case "twitter":
+                BrowserUtils.isDisplayed(page.twitterBtns.get(1));
+                break;
+            case "instagram":
+                BrowserUtils.isDisplayed(page.instagramBtns.get(1));
+                break;
+            case "linkedin":
+                BrowserUtils.isDisplayed(page.linkedinBtns.get(1));
+                break;
             default:
                 Assert.fail("Invalid button");
         }
@@ -104,6 +116,18 @@ public class HomeSteps {
                 break;
             case "scroll to top":
                 BrowserUtils.click(page.scrollToTop);
+                break;
+            case "facebook":
+                BrowserUtils.click(page.facebookBtns.get(1));
+                break;
+            case "twitter":
+                BrowserUtils.click(page.twitterBtns.get(1));
+                break;
+            case "instagram":
+                BrowserUtils.click(page.instagramBtns.get(1));
+                break;
+            case "linkedin":
+                BrowserUtils.click(page.linkedinBtns.get(1));
                 break;
             default:
                 Assert.fail("Invalid button");
