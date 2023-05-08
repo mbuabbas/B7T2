@@ -192,4 +192,38 @@ public class HomeSteps {
     public void verifyIsDisplayed(String footerInfo) {
         BrowserUtils.isDisplayed(page.footerInfo);
     }
+
+    @When("I click a {string}")
+    public void iClickA(String btnName) {
+        switch (btnName.toLowerCase())
+        {
+            case "home":
+                BrowserUtils.click(page.footerHomeLink);
+                break;
+            case "about us":
+                BrowserUtils.click(page.footerAboutUsLink);
+                break;
+            case "services":
+                BrowserUtils.click(page.footerServicesLink);
+                break;
+            case "clients":
+                BrowserUtils.click(page.footerClientsLink);
+                break;
+            case "join us":
+                BrowserUtils.click(page.footerJoinUsLink);
+                break;
+            case "contact us":
+                BrowserUtils.click(page.footerContactUsLink);
+                break;
+            default:
+                Assert.fail("Invalid button");
+        }
+    }
+
+    @Then("Verify {string} opening corresponding page")
+    public void verifyOpeningCorrespondingPage(String expectedPage) {
+        String actual = BrowserUtils.getText(page.currentPage);
+        BrowserUtils.assertEquals(actual, expectedPage.toUpperCase());
+
+    }
 }
