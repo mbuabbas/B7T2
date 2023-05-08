@@ -168,6 +168,11 @@ public class BrowserUtils {
         highlightElement(element);
         Assert.assertTrue(element.isDisplayed());
     }
+    public static void isDisplayedWithNoMoveInToView(WebElement element){
+        waitForElementVisibility(element);
+        highlightElement(element);
+        Assert.assertTrue(element.isDisplayed());
+    }
     public static void isEnabled(WebElement element){
         waitForElementClickability(element);
         moveIntoView(element);
