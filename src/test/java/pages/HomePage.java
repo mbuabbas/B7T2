@@ -71,20 +71,39 @@ public class HomePage {
 
     @FindBy(xpath = "//i[@class='fa fa-facebook-square']")
     public WebElement facebookBtn;
+    @FindBy(xpath = "//a[contains(@href,'facebook')]")
+    public List<WebElement> facebookBtns = new ArrayList<>();
 
     @FindBy(xpath = "//i[@class='fa fa-twitter-square']")
     public WebElement twitterBtn;
+    @FindBy(xpath = "//a[contains(@href,'twitter')]")
+    public List<WebElement> twitterBtns = new ArrayList<>();
 
     @FindBy(xpath = " //i[@class='fa fa-instagram']")
     public WebElement instagramBtn;
+    @FindBy(xpath = "//a[contains(@href,'instagram')]")
+    public List<WebElement> instagramBtns = new ArrayList<>();
 
     @FindBy(xpath = "//i[@class='fa fa-linkedin-square']")
     public WebElement linkedlnBtn;
+    @FindBy(xpath = "//a[contains(@href,'linkedin')]")
+    public List<WebElement> linkedinBtns = new ArrayList<>();
 
     @FindBy(xpath = "(//ul[@class='list-info'])[1]")
     public WebElement footerInfo;
     @FindBy(xpath = "//li[@class='current']")
     public WebElement currentPage;
+
+    @FindBy(xpath = "//h3[normalize-space()='Leadership Development']")
+    public WebElement leadershipDev;
+    @FindBy(xpath = "//h3[normalize-space()='Capability Building']")
+    public WebElement capabilityBuilding;
+    @FindBy(xpath = "//h3[normalize-space()='Rewards & Benefits']")
+    public WebElement rewardsBenefits;
+    @FindBy(xpath = "//h3[normalize-space()='Employee & EmployerRelations']")
+    public WebElement employeeEmployer;
+    @FindBy(xpath = "//h3[normalize-space()='Excellent Customer Service']")
+    public WebElement customerService;
 
 }
 
