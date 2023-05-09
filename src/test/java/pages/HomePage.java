@@ -105,10 +105,13 @@ public class HomePage {
     @FindBy(xpath = "//h3[normalize-space()='Excellent Customer Service']")
     public WebElement customerService;
 
+    @FindBy(xpath = "//div[@class='owl-stage']/div[@class='owl-item active' or @class='owl-item cloned active']/div[@class='item']/img")
+    public List<WebElement> companyNamesInLine;
+
     @FindBy(xpath = "//input[@placeholder='Email Address...']")
     public WebElement emailInputField;
 
-}
+  
 
 
 

@@ -1,5 +1,6 @@
 package step_definitions.UI;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -261,4 +262,37 @@ public class HomeSteps {
         }
     }
 
+
+    @Then("Verify {string} is listed in line")
+    public void verifyIsListedInLine(String companyName)
+    {
+        boolean isThere = false;
+        int numInList = 0;
+        for (int i = 0; i < page.companyNamesInLine.size(); i++)
+        {
+            System.out.println(page.companyNamesInLine.get(i).getAttribute("alt"));
+            System.out.println(companyName);
+            if (page.companyNamesInLine.get(i).getAttribute("alt").equals(companyName))
+            {
+                isThere = true;
+                numInList = i;
+                break;
+            }
+        }
+        if (isThere)
+            BrowserUtils.assertEquals(page.companyNamesInLine.get(numInList).getAttribute("alt"),companyName);
+    }
+
+    @And("Verify {string} logo is displayed")
+    public void verifyLogoIsDisplayed(String companyName)
+    {
+        for (int i = 0; i < page.companyNamesInLine.size(); i++)
+        {
+            if(page.companyNamesInLine.get(i).getAttribute("alt").equals(companyName))
+            {
+                BrowserUtils.isDisplayed(page.companyNamesInLine.get(i));
+                break;
+            }
+        }
+    }
 }
