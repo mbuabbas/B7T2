@@ -272,8 +272,11 @@ public class HomeSteps {
                 break;
             }
         }
+        BrowserUtils.waitForElementVisibility(page.companyNamesInLine.get(numInList));
         if (isThere)
+        {
             BrowserUtils.assertEquals(page.companyNamesInLine.get(numInList).getAttribute("alt"),companyName);
+        }
     }
 
     @And("Verify {string} logo is displayed")
