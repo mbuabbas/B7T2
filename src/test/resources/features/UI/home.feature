@@ -98,3 +98,16 @@ Feature: Home scenarios
       |Twitter            |https://twitter.com/      |
       |Instagram          |https://instagram.com/    |
       |LinkedIn           |https://www.linkedin.com/ |
+
+  @AD-12
+  Scenario Outline: Verify that the company's names are listed and displayed
+    Then Verify "<company name>" is listed in line
+    And Verify "<company name>" logo is displayed
+    Examples:
+      |company name|
+      |forbes      |
+      |infra       |
+      |perlinX     |
+      |alstom      |
+      |hasting     |
+      |solve       |
