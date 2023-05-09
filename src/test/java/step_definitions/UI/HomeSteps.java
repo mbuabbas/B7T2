@@ -193,6 +193,12 @@ public class HomeSteps {
         BrowserUtils.isDisplayed(page.footerInfo);
     }
 
+
+    @Then("Verify {string} place holder is displayed")
+    public void verifyPlaceHolderIsDisplayed(String emailInputField) {
+        BrowserUtils.isDisplayed(page.emailInputField);
+    }
+
     @When("I click a {string}")
     public void iClickA(String btnName) {
         switch (btnName.toLowerCase())

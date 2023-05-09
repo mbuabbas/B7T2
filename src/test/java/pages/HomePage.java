@@ -105,6 +105,9 @@ public class HomePage {
     @FindBy(xpath = "//h3[normalize-space()='Excellent Customer Service']")
     public WebElement customerService;
 
+    @FindBy(xpath = "//input[@placeholder='Email Address...']")
+    public WebElement emailInputField;
+
 }
 
 
