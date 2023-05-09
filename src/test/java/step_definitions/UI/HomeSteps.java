@@ -226,4 +226,33 @@ public class HomeSteps {
         BrowserUtils.assertEquals(actual, expectedPage.toUpperCase());
 
     }
+
+
+
+
+    @Then("Verify {string} displayed")
+    public void verifyDisplayed(String item) {
+        switch (item) {
+            case "Leadership Development":
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.leadershipDev),item);
+                break;
+
+            case "Capability Building":
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.capabilityBuilding),item);
+                break;
+            case "Rewards & Benefits":
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.rewardsBenefits),item);
+                break;
+            case "Employee & Employer Relations":
+                String employeeItem = "Employee & Employer\nRelations";
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.employeeEmployer),employeeItem);
+                break;
+            case "Excellent Customer Service":
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.customerService),item);
+                break;
+            //default:
+                //Assert.fail("Invalid text");
+        }
+    }
+
 }

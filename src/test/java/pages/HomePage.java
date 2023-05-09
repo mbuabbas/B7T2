@@ -94,6 +94,17 @@ public class HomePage {
     @FindBy(xpath = "//li[@class='current']")
     public WebElement currentPage;
 
+    @FindBy(xpath = "//h3[normalize-space()='Leadership Development']")
+    public WebElement leadershipDev;
+    @FindBy(xpath = "//h3[normalize-space()='Capability Building']")
+    public WebElement capabilityBuilding;
+    @FindBy(xpath = "//h3[normalize-space()='Rewards & Benefits']")
+    public WebElement rewardsBenefits;
+    @FindBy(xpath = "//h3[normalize-space()='Employee & EmployerRelations']")
+    public WebElement employeeEmployer;
+    @FindBy(xpath = "//h3[normalize-space()='Excellent Customer Service']")
+    public WebElement customerService;
+
 }
 
 

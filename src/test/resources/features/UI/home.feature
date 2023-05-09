@@ -68,6 +68,17 @@ Feature: Home scenarios
       | Twitter           | https://twitter.com/       |
       | Instagram         | https://www.instagram.com/ |
       | LinkedIn          | https://www.linkedin.com/  |
+  @AD-10
+  Scenario Outline: Verify section with 5 items displayed as a headers and descriptions under it
+    When Scroll down the homepage
+    Then Verify "<item>" displayed
+    Examples:
+      | item                          |
+      | Leadership Development        |
+      | Capability Building           |
+      | Rewards & Benefits            |
+      | Employee & Employer Relations |
+      | Excellent Customer Service    |
 
   @AD-13
   Scenario: Verify the following information is displayed in footer section:
