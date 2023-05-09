@@ -69,6 +69,9 @@ public class HomePage {
     @FindBy(xpath = "(//ul[@class='list-info'])[1]")
     public WebElement footerInfo;
 
+    @FindBy(xpath = "//input[@placeholder='Email Address...']")
+    public WebElement emailInputField;
+
 }
 
 

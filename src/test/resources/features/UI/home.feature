@@ -62,3 +62,7 @@ Feature: Home scenarios
     Then Verify "Phone: +1 703-831-3217" is displayed
     Then Verify "Email: Info@advancesystems.us" is displayed
     Then Verify "Mon to Sat: 9.00 am to 5:00 pm" is displayed
+
+    @AD-16
+    Scenario: Verify Newsletter section has input field for Email Address
+      Then Verify "Email Address" place holder is displayed
