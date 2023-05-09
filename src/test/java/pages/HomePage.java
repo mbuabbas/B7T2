@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomePage {
-    public HomePage(){
+    public HomePage() {
         PageFactory.initElements(BrowserUtils.getDriver(), this);
     }
 
     @FindBy(xpath = "//div[@class='container']//a[text()='Get Support']")
     public WebElement getSupportNavBtn;
     @FindBy(xpath = "//div[@class='container']//a[text()='Job Career']")
-    public  WebElement jobCareerNavBtn;
+    public WebElement jobCareerNavBtn;
     @FindBy(xpath = "//div[@class='container']//a[text()='Feedback']")
     public WebElement feedBackNavBtn;
     @FindBy(xpath = "//div[@class='container']//a[@id='dropdownMenu1']")
@@ -66,7 +66,7 @@ public class HomePage {
     @FindBy(className = "info-box-one")
     public WebElement adressInfo;
 
-    @FindBy(xpath= "(//div[@class='info-box-one'])[2]")
+    @FindBy(xpath = "(//div[@class='info-box-one'])[2]")
     public WebElement quickContact;
 
     @FindBy(xpath = "//i[@class='fa fa-facebook-square']")
@@ -107,7 +107,12 @@ public class HomePage {
 
     @FindBy(xpath = "//div[@class='owl-stage']/div[@class='owl-item active' or @class='owl-item cloned active']/div[@class='item']/img")
     public List<WebElement> companyNamesInLine;
+
+    @FindBy(xpath = "//input[@placeholder='Email Address...']")
+    public WebElement emailInputField;
 }
+
+  
 
 
 
