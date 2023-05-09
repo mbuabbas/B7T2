@@ -12,11 +12,11 @@ import org.junit.runner.RunWith;
                 "json:target/cucumber-reports/cucumber.json",
                 "rerun:target/rerun.txt"
         },
-        features = "src/test/resources/features",
-        glue = "step_definitions",
+        features = "src/test/resources/features/UI",
+        glue = "step_definitions/UI",
         stepNotifications = true,
         dryRun = false
-        ,tags = "@AD-16"
+//        ,tags = "@AD-16"
 )
 public class CukesRunner {
 
