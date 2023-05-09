@@ -71,6 +71,18 @@ public class HomeSteps {
             case "contact us":
                 BrowserUtils.isDisplayed(page.contactUsBtns.get(1));
                 break;
+            case "facebook":
+                BrowserUtils.isDisplayed(page.facebookBtns.get(1));
+                break;
+            case "twitter":
+                BrowserUtils.isDisplayed(page.twitterBtns.get(1));
+                break;
+            case "instagram":
+                BrowserUtils.isDisplayed(page.instagramBtns.get(1));
+                break;
+            case "linkedin":
+                BrowserUtils.isDisplayed(page.linkedinBtns.get(1));
+                break;
             default:
                 Assert.fail("Invalid button");
         }
@@ -104,6 +116,18 @@ public class HomeSteps {
                 break;
             case "scroll to top":
                 BrowserUtils.click(page.scrollToTop);
+                break;
+            case "facebook":
+                BrowserUtils.click(page.facebookBtns.get(1));
+                break;
+            case "twitter":
+                BrowserUtils.click(page.twitterBtns.get(1));
+                break;
+            case "instagram":
+                BrowserUtils.click(page.instagramBtns.get(1));
+                break;
+            case "linkedin":
+                BrowserUtils.click(page.linkedinBtns.get(1));
                 break;
             default:
                 Assert.fail("Invalid button");
@@ -169,8 +193,72 @@ public class HomeSteps {
         BrowserUtils.isDisplayed(page.footerInfo);
     }
 
+
     @Then("Verify {string} place holder is displayed")
     public void verifyPlaceHolderIsDisplayed(String emailInputField) {
         BrowserUtils.isDisplayed(page.emailInputField);
     }
+
+    @When("I click a {string}")
+    public void iClickA(String btnName) {
+        switch (btnName.toLowerCase())
+        {
+            case "home":
+                BrowserUtils.click(page.footerHomeLink);
+                break;
+            case "about us":
+                BrowserUtils.click(page.footerAboutUsLink);
+                break;
+            case "services":
+                BrowserUtils.click(page.footerServicesLink);
+                break;
+            case "clients":
+                BrowserUtils.click(page.footerClientsLink);
+                break;
+            case "join us":
+                BrowserUtils.click(page.footerJoinUsLink);
+                break;
+            case "contact us":
+                BrowserUtils.click(page.footerContactUsLink);
+                break;
+            default:
+                Assert.fail("Invalid button");
+        }
+    }
+
+    @Then("Verify {string} opening corresponding page")
+    public void verifyOpeningCorrespondingPage(String expectedPage) {
+        String actual = BrowserUtils.getText(page.currentPage);
+        BrowserUtils.assertEquals(actual, expectedPage.toUpperCase());
+
+    }
+
+
+
+
+    @Then("Verify {string} displayed")
+    public void verifyDisplayed(String item) {
+        switch (item) {
+            case "Leadership Development":
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.leadershipDev),item);
+                break;
+
+            case "Capability Building":
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.capabilityBuilding),item);
+                break;
+            case "Rewards & Benefits":
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.rewardsBenefits),item);
+                break;
+            case "Employee & Employer Relations":
+                String employeeItem = "Employee & Employer\nRelations";
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.employeeEmployer),employeeItem);
+                break;
+            case "Excellent Customer Service":
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.customerService),item);
+                break;
+            //default:
+                //Assert.fail("Invalid text");
+        }
+    }
+
 }
