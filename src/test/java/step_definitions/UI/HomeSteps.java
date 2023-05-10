@@ -1,6 +1,7 @@
 package step_definitions.UI;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -83,6 +84,9 @@ public class HomeSteps {
                 break;
             case "linkedin":
                 BrowserUtils.isDisplayed(page.linkedinBtns.get(1));
+                break;
+            case "read more":
+                BrowserUtils.isDisplayed(page.readMoreBtn4);
                 break;
             default:
                 Assert.fail("Invalid button");
@@ -222,6 +226,9 @@ public class HomeSteps {
             case "contact us":
                 BrowserUtils.click(page.footerContactUsLink);
                 break;
+            case "read more":
+                BrowserUtils.click(page.readMoreBtn4);
+                break;
             default:
                 Assert.fail("Invalid button");
         }
@@ -294,5 +301,31 @@ public class HomeSteps {
                 break;
             }
         }
+    }
+
+    @When("Loading the home page")
+    public void whenLoadingTheHomePage() {
+        BrowserUtils.click(page.homeBtn);
+    }
+
+    @And("Verify section part of the Home Page displays a text {string}")
+    public void verifySectionPartOfTheHomePageDisplaysAText(String parallaxText) {
+             BrowserUtils.waitForElementVisibility(page.parallaxText);
+
+             BrowserUtils.assertTrue(page.parallaxText.isDisplayed());
+
+        }
+
+
+
+    @Then("Verify if section part of the Home Page refreshes and change display text to {string}")
+    public void verifyIfSectionPartOfTheHomePageRefreshesAndChangeDisplayTextTo(String text) {
+        BrowserUtils.waitForElementVisibility(page.parallaxText2);
+        BrowserUtils.assertTrue(page.parallaxText2.isDisplayed());
+    }
+
+    @Then("Verify if button leads to {string} page")
+    public void verifyIfButtonLeadsToPage(String text) {
+        BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(), "https://tla-batch7.github.io/advancesystems-test-b7/services.html");
     }
 }

@@ -110,6 +110,17 @@ public class HomePage {
 
     @FindBy(xpath = "//input[@placeholder='Email Address...']")
     public WebElement emailInputField;
+
+    @FindBy(xpath = "(//a[@href='index.html'])[1]")
+    public WebElement homeBtn;
+
+    @FindBy(xpath = "(//h2[@class='white-heading'])[1]")
+    public WebElement parallaxText;
+    @FindBy(xpath = "(//h2[@class='white-heading'])[2]")
+    public WebElement parallaxText2;
+
+    @FindBy(xpath = "(//a[@href='services.html'])[4]")
+    public WebElement readMoreBtn4;
 }
 
   

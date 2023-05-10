@@ -13,6 +13,16 @@ Feature: Home scenarios
       | Spanish     |
       | French      |
 
+  @AD-4
+  Scenario: There should be a section under navigation bar with Header, description and Read More button. Button should take the user to “Services” page. Section content should refresh with new set of header and description every 10-15 seconds.
+    When Loading the home page
+    And Verify section part of the Home Page displays a text "A bright career is waiting for you..."
+    And Verify "READ MORE" button is visible
+    Then Verify if section part of the Home Page refreshes and change display text to "Think Big. Achieve Bigger."
+    And I click a "READ MORE"
+    Then Verify if button leads to "Services" page
+
+
   @AD-5
   Scenario: Verify title of the homepage should be "Advance Systems - Home"
     Then Verify title of the homepage be "Advance Systems - Home"
