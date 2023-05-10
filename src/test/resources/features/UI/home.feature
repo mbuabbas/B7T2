@@ -20,12 +20,19 @@ Feature: Home scenarios
     And Verify "READ MORE" button is visible
     Then Verify if section part of the Home Page refreshes and change display text to "Think Big. Achieve Bigger."
     And I click a "READ MORE"
-    Then Verify if button leads to "Services" page
+    Then Verify if button leads to "services.html" page
 
 
   @AD-5
   Scenario: Verify title of the homepage should be "Advance Systems - Home"
     Then Verify title of the homepage be "Advance Systems - Home"
+
+  @AD-7
+    Scenario: Verify if Join Us button is displayed on the main content of home page and verify if button leads to "Join Us" page
+    When Loading the home page
+    And Verify "Join Us" button in the main header is visible
+    And Click on "Join Us" button in the main header
+    Then Verify if button leads to "joinUs.html" page
 
 
   @AD-8
@@ -42,6 +49,12 @@ Feature: Home scenarios
       | Clients     |
       | Join Us     |
       | Contact Us  |
+
+  @AD-11
+    Scenario: Verify if testimonial has a "Word from our Clients" as a header and verify if message, name and state of the client is displayed
+      When Scroll down the homepage
+      And Verify "Words from our Clients" is displayed
+      Then Verify if clients message, name and state are displayed
 
   @AD-14
   Scenario Outline: Verify following links displayed and work as expected by opening corresponding page

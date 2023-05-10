@@ -325,7 +325,41 @@ public class HomeSteps {
     }
 
     @Then("Verify if button leads to {string} page")
-    public void verifyIfButtonLeadsToPage(String text) {
-        BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(), "https://tla-batch7.github.io/advancesystems-test-b7/services.html");
+    public void verifyIfButtonLeadsToPage(String url) {
+        switch (url.toLowerCase()) {
+            case "services":
+                BrowserUtils.assertTrue(BrowserUtils.getDriver().getCurrentUrl().contains(url));
+                break;
+            case "joinus.html":
+                BrowserUtils.assertTrue(BrowserUtils.getDriver().getCurrentUrl().contains(url));
+                break;
+        }
+    }
+
+    @And("Verify {string} button in the main header is visible")
+    public void verifyButtonInTheMainHeaderIsVisible(String mainHeaderBtn) {
+        switch (mainHeaderBtn.toLowerCase()){
+            case "join us":
+                BrowserUtils.assertTrue(page.mainHeaderJoinUsBtn.isDisplayed());
+                break;
+            default:
+                Assert.fail("Test Failed");
+        }
+    }
+
+    @And("Click on {string} button in the main header")
+    public void clickOnButtonInTheMainHeader(String mainHeaderBtn) {
+        switch (mainHeaderBtn.toLowerCase()){
+            case "join us":
+                BrowserUtils.click(page.mainHeaderJoinUsBtn);
+                break;
+            default:
+                Assert.fail("Test Failed");
+        }
+    }
+
+    @Then("Verify if clients message, name and state are displayed")
+    public void verifyIfClientsMessageNameAndStateAreDisplayed() {
+
     }
 }

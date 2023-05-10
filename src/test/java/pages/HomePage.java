@@ -121,6 +121,10 @@ public class HomePage {
 
     @FindBy(xpath = "(//a[@href='services.html'])[4]")
     public WebElement readMoreBtn4;
+
+    @FindBy(xpath = "(//a[@href='joinUs.html'])[2]")
+    public WebElement mainHeaderJoinUsBtn;
+
 }
 
   
