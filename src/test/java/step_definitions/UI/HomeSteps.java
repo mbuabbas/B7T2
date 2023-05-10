@@ -358,8 +358,15 @@ public class HomeSteps {
         }
     }
 
-    @Then("Verify if clients message, name and state are displayed")
-    public void verifyIfClientsMessageNameAndStateAreDisplayed() {
+    @Then("Verify if clients name and state are displayed")
+    public void verifyIfClientsNameAndStateAreDisplayed() {
+        BrowserUtils.assertTrue(page.clientsName.isDisplayed());
+        BrowserUtils.assertTrue(page.clientsState.isDisplayed());
+    }
 
+
+    @Then("Verify if clients message is displayed")
+    public void verifyIfClientsMessageIsDisplayed() {
+        BrowserUtils.assertTrue(page.clientsMsg.isDisplayed());
     }
 }

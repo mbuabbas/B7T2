@@ -125,6 +125,12 @@ public class HomePage {
     @FindBy(xpath = "(//a[@href='joinUs.html'])[2]")
     public WebElement mainHeaderJoinUsBtn;
 
+    @FindBy(xpath = "//div[@class='owl-item active']/descendant::h3")
+    public WebElement clientsName;
+    @FindBy(xpath = "(//div[@class='owl-item active'])[1]")
+    public WebElement clientsMsg;
+    @FindBy(xpath = "//div[@class='owl-item active']/descendant::div[@class='designation']")
+    public WebElement clientsState;
 }
 
   

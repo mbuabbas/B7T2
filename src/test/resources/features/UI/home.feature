@@ -54,7 +54,12 @@ Feature: Home scenarios
     Scenario: Verify if testimonial has a "Word from our Clients" as a header and verify if message, name and state of the client is displayed
       When Scroll down the homepage
       And Verify "Words from our Clients" is displayed
-      Then Verify if clients message, name and state are displayed
+      Then Verify if clients message is displayed
+      Then Verify if clients name and state are displayed
+
+
+
+
 
   @AD-14
   Scenario Outline: Verify following links displayed and work as expected by opening corresponding page
