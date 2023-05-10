@@ -13,9 +13,26 @@ Feature: Home scenarios
       | Spanish     |
       | French      |
 
+  @AD-4
+  Scenario: There should be a section under navigation bar with Header, description and Read More button. Button should take the user to “Services” page. Section content should refresh with new set of header and description every 10-15 seconds.
+    When Loading the home page
+    And Verify section part of the Home Page displays a text "A bright career is waiting for you..."
+    And Verify "READ MORE" button is visible
+    Then Verify if section part of the Home Page refreshes and change display text to "Think Big. Achieve Bigger."
+    And I click a "READ MORE"
+    Then Verify if button leads to "services.html" page
+
+
   @AD-5
   Scenario: Verify title of the homepage should be "Advance Systems - Home"
     Then Verify title of the homepage be "Advance Systems - Home"
+
+  @AD-7
+    Scenario: Verify if Join Us button is displayed on the main content of home page and verify if button leads to "Join Us" page
+    When Loading the home page
+    And Verify "Join Us" button in the main header is visible
+    And Click on "Join Us" button in the main header
+    Then Verify if button leads to "joinUs.html" page
 
 
   @AD-8
@@ -32,6 +49,17 @@ Feature: Home scenarios
       | Clients     |
       | Join Us     |
       | Contact Us  |
+
+  @AD-11
+    Scenario: Verify if testimonial has a "Word from our Clients" as a header and verify if message, name and state of the client is displayed
+      When Scroll down the homepage
+      And Verify "Words from our Clients" is displayed
+      Then Verify if clients message is displayed
+      Then Verify if clients name and state are displayed
+
+
+
+
 
   @AD-14
   Scenario Outline: Verify following links displayed and work as expected by opening corresponding page
