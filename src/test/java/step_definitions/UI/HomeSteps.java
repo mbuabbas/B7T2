@@ -377,25 +377,26 @@ public class HomeSteps {
     @Then("Verify header of the page is {string}")
     public void verifyHeaderOfThePageIs(String header)
     {
+        BrowserUtils.sleep(3000);
         switch(header.toLowerCase())
         {
             case "home":
-                BrowserUtils.isDisplayed(page.homeFirstHeader);
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.homeFirstHeader);
                 break;
             case "about us":
-                BrowserUtils.isDisplayed(page.aboutUsHeader);
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.aboutUsHeader);
                 break;
             case "services":
-                BrowserUtils.isDisplayed(page.servicesHeader);
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.servicesHeader);
                 break;
             case "clients":
-                BrowserUtils.isDisplayed(page.clientHeader);
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.clientHeader);
                 break;
             case "join us":
-                BrowserUtils.isDisplayed(page.joinUsHeader);
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.joinUsHeader);
                 break;
             case "contact us":
-                BrowserUtils.isDisplayed(page.contactUsHeader);
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.contactUsHeader);
                 break;
             default:
                 Assert.fail("Invalid header!");

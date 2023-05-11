@@ -100,7 +100,7 @@ public class Api_StepDefinitions {
         }
     }
 
-<<<<<<< HEAD
+
     @Given("I perform get request to {string} endpoint")
     public void iPerformGetRequestToEndpoint(String endpoint)
     {
@@ -118,10 +118,9 @@ public class Api_StepDefinitions {
     }
 
     @Then("Verify response status code is {int}")
-    public void verifyResponseStatusCodeIs(int code)
-    {
+    public void verifyResponseStatusCodeIs(int code) {
         Assert.assertEquals(code, response.statusCode());
-=======
+    }
     @Given("I send a POST request to {string} with body:")
     public void iSendAPOSTRequestToWithBody(String endpoint, Map<String, String> inputBody) {
         CreateProjectPojos project = new CreateProjectPojos();
@@ -155,6 +154,5 @@ public class Api_StepDefinitions {
         project.setLastName(inputBody.get("lastName"));
         project.setBatch(inputBody.get("batch"));
         project.setEmail(inputBody.get("email"));
->>>>>>> main
     }
 }
