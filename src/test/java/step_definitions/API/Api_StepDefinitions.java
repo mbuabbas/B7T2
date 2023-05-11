@@ -75,4 +75,31 @@ public class Api_StepDefinitions {
             Assert.assertTrue(true);
         }
     }
+
+    @Given("I send a POST request to {string} with body {string}, {string}, {string}, {string}")
+    public void iSendAPOSTRequestToWithBody(String endpoint, String batchName, String firstName, String lastName, String email) {
+        String payload = "{\n" +
+                "    \"firstName\": \""+ firstName + "\",\n" +
+                "    \"lastName\": \""+ lastName + "\",\n" +
+                "    \"batch\": \""+ batchName + "\",\n" +
+                "    \"email\": \""+ email + "\"\n" +
+                "}";
+        response = RestAssured.given().header("Content-type", "application/json")
+                .and()
+                .body(payload)
+                .when()
+                .post(endpoint)
+                .then().
+                log().all()
+                .extract().response();
+    }
+
+    @And("the response body contains the following fields:")
+    public void theResponseBodyContainsTheFollowingFields(List<String> expectedFields) {
+        response = response.then().log().all().extract().response();
+        for (String field : expectedFields) {
+            Assert.assertTrue(response.getBody().asString().contains(field));
+
+        }
+    }
 }

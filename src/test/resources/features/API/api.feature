@@ -11,7 +11,7 @@ Feature: practice api
     Then the response status code is 200
     And  the "<name>" not exist in  response body
     Examples:
-      | name             | duration  |
+      | name           | duration  |
       | Uran test 2001 | 1002 days |
 
   @AD-22-b
@@ -24,5 +24,46 @@ Feature: practice api
     Then the response status code is 200
     And  the "<name>" not exist in  response body
     Examples:
-      | name             | duration  |
+      | name           | duration  |
       | Uran test 2001 | 1002 days |
+
+  @AD-23
+  Scenario Outline: Add new student
+    Given I send a POST request to "https://tla-school-api.herokuapp.com/api/school/resources/students" with body "<batch name>", "<firstname>", "<lastname>", "<email>"
+    Then the response status code is 200
+    And the response body contains the following fields:
+      | 77                          |
+      | Darkhan                     |
+      | Suranchiyev                 |
+      | darkhanSuranchiyevgmail.com |
+    Examples:
+      | batch name | firstname | lastname    | email                       |
+      | 77         | Darkhan   | Suranchiyev | darkhanSuranchiyevgmail.com |
+
+  @AD-24
+  Scenario: Update existing student info
+    Given I perform a PUT request to "https://tla-school-api.herokuapp.com/api/school/resources/students" with body:
+      | streetAddress | 1100 Pensylvania Avenue NW |
+      | city          | Washington, DC             |
+      | state         | VA                         |
+      | zip           | 20004                      |
+      | places        | yes                        |
+      | company       | META                       |
+      | location      | Washington, DC             |
+      | firstName     | Uran                       |
+      | lastName      | Suranchiyev                |
+      | batch         | 7                          |
+      | email         | uransura@gmail.com         |
+    Then the response status code is 200
+    And the response body contains the following fields:
+      | 1100 Pensylvania Avenue NW |
+      | Washington, DC             |
+      | VA                         |
+      | 20004                      |
+      | yes                        |
+      | META                       |
+      | Washington, DC             |
+      | Uran                       |
+      | Suranchiyev                |
+      | 7                          |
+      | uransura@gmail.com         |
