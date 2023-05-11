@@ -1,6 +1,7 @@
 package step_definitions.UI;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -83,6 +84,9 @@ public class HomeSteps {
                 break;
             case "linkedin":
                 BrowserUtils.isDisplayed(page.linkedinBtns.get(1));
+                break;
+            case "read more":
+                BrowserUtils.isDisplayed(page.readMoreBtn4);
                 break;
             default:
                 Assert.fail("Invalid button");
@@ -222,6 +226,9 @@ public class HomeSteps {
             case "contact us":
                 BrowserUtils.click(page.footerContactUsLink);
                 break;
+            case "read more":
+                BrowserUtils.click(page.readMoreBtn4);
+                break;
             default:
                 Assert.fail("Invalid button");
         }
@@ -294,5 +301,72 @@ public class HomeSteps {
                 break;
             }
         }
+    }
+
+    @When("Loading the home page")
+    public void whenLoadingTheHomePage() {
+        BrowserUtils.click(page.homeBtn);
+    }
+
+    @And("Verify section part of the Home Page displays a text {string}")
+    public void verifySectionPartOfTheHomePageDisplaysAText(String parallaxText) {
+             BrowserUtils.waitForElementVisibility(page.parallaxText);
+
+             BrowserUtils.assertTrue(page.parallaxText.isDisplayed());
+
+        }
+
+
+
+    @Then("Verify if section part of the Home Page refreshes and change display text to {string}")
+    public void verifyIfSectionPartOfTheHomePageRefreshesAndChangeDisplayTextTo(String text) {
+        BrowserUtils.waitForElementVisibility(page.parallaxText2);
+        BrowserUtils.assertTrue(page.parallaxText2.isDisplayed());
+    }
+
+    @Then("Verify if button leads to {string} page")
+    public void verifyIfButtonLeadsToPage(String url) {
+        switch (url.toLowerCase()) {
+            case "services":
+                BrowserUtils.assertTrue(BrowserUtils.getDriver().getCurrentUrl().contains(url));
+                break;
+            case "joinus.html":
+                BrowserUtils.assertTrue(BrowserUtils.getDriver().getCurrentUrl().contains(url));
+                break;
+        }
+    }
+
+    @And("Verify {string} button in the main header is visible")
+    public void verifyButtonInTheMainHeaderIsVisible(String mainHeaderBtn) {
+        switch (mainHeaderBtn.toLowerCase()){
+            case "join us":
+                BrowserUtils.assertTrue(page.mainHeaderJoinUsBtn.isDisplayed());
+                break;
+            default:
+                Assert.fail("Test Failed");
+        }
+    }
+
+    @And("Click on {string} button in the main header")
+    public void clickOnButtonInTheMainHeader(String mainHeaderBtn) {
+        switch (mainHeaderBtn.toLowerCase()){
+            case "join us":
+                BrowserUtils.click(page.mainHeaderJoinUsBtn);
+                break;
+            default:
+                Assert.fail("Test Failed");
+        }
+    }
+
+    @Then("Verify if clients name and state are displayed")
+    public void verifyIfClientsNameAndStateAreDisplayed() {
+        BrowserUtils.assertTrue(page.clientsName.isDisplayed());
+        BrowserUtils.assertTrue(page.clientsState.isDisplayed());
+    }
+
+
+    @Then("Verify if clients message is displayed")
+    public void verifyIfClientsMessageIsDisplayed() {
+        BrowserUtils.assertTrue(page.clientsMsg.isDisplayed());
     }
 }

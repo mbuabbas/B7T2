@@ -10,6 +10,7 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.Assert;
 import pages.CreateProjectPojos;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -37,8 +38,8 @@ public class Api_StepDefinitions {
     @When("I send a POST request with body {string}, {string}")
     public void iSendAPOSTRequestToTheSDETCourseEndpointWithBody(String name, String duration) {
         String payload = "{\n" +
-                "  \"name\": \""+ name + "\",\n" +
-                "  \"duration\": \""+ duration + "\"\n" +
+                "  \"name\": \"" + name + "\",\n" +
+                "  \"duration\": \"" + duration + "\"\n" +
                 "}";
         RequestSpecification request = RestAssured.given();
         response = request.header("Content-type", "application/json")
@@ -72,11 +73,22 @@ public class Api_StepDefinitions {
     @And("the {string} not exist in  response body")
     public void theNotExistInResponseBody(String name) {
         response = response.then().log().all().extract().response();
-        if(response.getBody().asString().contains(name)){
+        if (response.getBody().asString().contains(name)) {
             Assert.fail();
         } else {
             Assert.assertTrue(true);
         }
+    }
+
+    @Given("I perform get request to  {string}")
+    public void iPerformGetRequestTo(String endpoint) {
+        response = RestAssured.given()
+                .get(endpoint)
+                .then()
+                .log()
+                .all()
+                .extract()
+                .response();
     }
 
     @And("the response body contains the following fields:")

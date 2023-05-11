@@ -26,6 +26,22 @@ Feature: practice api
     Examples:
       | name           | duration  |
       | Uran test 2001 | 1002 days |
+  @AS-20
+  Scenario: Retrieve SDET Course Names
+    Given I perform get request to  "https://tla-school-api.herokuapp.com/api/school/programs/sdetcourse"
+    Then the response status code is 200
+    And the response body contains the following fields:
+      | id       |
+      | name     |
+      | duration |
+  @AS-20
+  Scenario: Retrieve Devs Course Names
+    Given I perform get request to  "https://tla-school-api.herokuapp.com/api/school/programs/devcourse"
+    Then the response status code is 200
+    And the response body contains the following fields:
+      | id       |
+      | name     |
+      | duration |
 
   @AD-23
   Scenario: Add new student
