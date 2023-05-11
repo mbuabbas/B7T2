@@ -42,3 +42,8 @@ Feature: practice api
       | id       |
       | name     |
       | duration |
+
+  @AD-21
+  Scenario: Verify option to add new course to database
+    Given I perform get request to "devcourse" endpoint
+    Then Verify response status code is 200
