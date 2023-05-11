@@ -28,17 +28,19 @@ Feature: practice api
       | Uran test 2001 | 1002 days |
 
   @AD-23
-  Scenario Outline: Add new student
-    Given I send a POST request to "https://tla-school-api.herokuapp.com/api/school/resources/students" with body "<batch name>", "<firstname>", "<lastname>", "<email>"
+  Scenario: Add new student
+    Given I send a POST request to "https://tla-school-api.herokuapp.com/api/school/resources/students" with body:
+      | batch     | 77                          |
+      | firstname | Raul                        |
+      | lastname  | Suranchiyev                 |
+      | email     | darkhanSuranchiyevgmail.com |
     Then the response status code is 200
     And the response body contains the following fields:
       | 77                          |
-      | Darkhan                     |
+      | Raul                        |
       | Suranchiyev                 |
       | darkhanSuranchiyevgmail.com |
-    Examples:
-      | batch name | firstname | lastname    | email                       |
-      | 77         | Darkhan   | Suranchiyev | darkhanSuranchiyevgmail.com |
+
 
   @AD-24
   Scenario: Update existing student info

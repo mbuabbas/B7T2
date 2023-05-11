@@ -8,7 +8,10 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Assert;
+import pages.CreateProjectPojos;
+
 import java.util.List;
+import java.util.Map;
 
 
 public class Api_StepDefinitions {
@@ -76,24 +79,6 @@ public class Api_StepDefinitions {
         }
     }
 
-    @Given("I send a POST request to {string} with body {string}, {string}, {string}, {string}")
-    public void iSendAPOSTRequestToWithBody(String endpoint, String batchName, String firstName, String lastName, String email) {
-        String payload = "{\n" +
-                "    \"firstName\": \""+ firstName + "\",\n" +
-                "    \"lastName\": \""+ lastName + "\",\n" +
-                "    \"batch\": \""+ batchName + "\",\n" +
-                "    \"email\": \""+ email + "\"\n" +
-                "}";
-        response = RestAssured.given().header("Content-type", "application/json")
-                .and()
-                .body(payload)
-                .when()
-                .post(endpoint)
-                .then().
-                log().all()
-                .extract().response();
-    }
-
     @And("the response body contains the following fields:")
     public void theResponseBodyContainsTheFollowingFields(List<String> expectedFields) {
         response = response.then().log().all().extract().response();
@@ -101,5 +86,40 @@ public class Api_StepDefinitions {
             Assert.assertTrue(response.getBody().asString().contains(field));
 
         }
+    }
+
+    @Given("I send a POST request to {string} with body:")
+    public void iSendAPOSTRequestToWithBody(String endpoint, Map<String, String> inputBody) {
+        CreateProjectPojos project = new CreateProjectPojos();
+        project.setBatch(inputBody.get("batch"));
+        project.setFirstName(inputBody.get("firstname"));
+        project.setLastName(inputBody.get("lastname"));
+        project.setEmail(inputBody.get("email"));
+
+
+        response = RestAssured.given().header("Content-type", "application/json")
+                .and()
+                .body(project)
+                .when()
+                .post(endpoint)
+                .then().
+                log().all()
+                .extract().response();
+    }
+
+    @Given("I perform a PUT request to {string} with body:")
+    public void iPerformAPUTRequestToWithBody(String endpoint, Map<String, String> inputBody) {
+        CreateProjectPojos project = new CreateProjectPojos();
+        project.setStreetAddress(inputBody.get("streetAddress"));
+        project.setCity(inputBody.get("city"));
+        project.setState(inputBody.get("state"));
+        project.setZip(inputBody.get("zip"));
+        project.setPlaces(inputBody.get("places"));
+        project.setCompany(inputBody.get("company"));
+        project.setLocation(inputBody.get("location"));
+        project.setFirstName(inputBody.get("firstName"));
+        project.setLastName(inputBody.get("lastName"));
+        project.setBatch(inputBody.get("batch"));
+        project.setEmail(inputBody.get("email"));
     }
 }
