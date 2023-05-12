@@ -38,7 +38,7 @@ public class HomePage {
     @FindBy(xpath = "//a[text()='Services']")
     public List<WebElement> servicesBtns = new ArrayList<>();
     @FindBy(xpath = "//a[text()='Clients']")
-    public WebElement clientsBtn;
+    public List<WebElement> clientsBtns = new ArrayList<>();
     @FindBy(xpath = "//a[text()='Join Us']")
     public List<WebElement> joinUsBtns = new ArrayList<>();
     @FindBy(xpath = "//a[text()='Contact Us']")
@@ -131,9 +131,21 @@ public class HomePage {
     public WebElement clientsMsg;
     @FindBy(xpath = "//div[@class='owl-item active']/descendant::div[@class='designation']")
     public WebElement clientsState;
-
     @FindBy(xpath = "//div/h2[text()='Words from our Clients']")
     public WebElement testimonialHeader;
+    @FindBy(xpath = "//h2[@class='white-heading']")
+    public WebElement homeFirstHeader;
+    @FindBy(xpath = "//h1[text()='About Us']")
+    public WebElement aboutUsHeader;
+    @FindBy(xpath = "//h1[text()='Our Divisions']")
+    public WebElement servicesHeader;
+    @FindBy(xpath = "//h1[text()='Our Clients']")
+    public WebElement clientHeader;
+    @FindBy(xpath = "//h1[text()='Join Us']")
+    public WebElement joinUsHeader;
+    @FindBy(xpath = "//h1[text()='Contact Us']")
+    public WebElement contactUsHeader;
+
 }
 
   

@@ -19,5 +19,4 @@ import org.junit.runner.RunWith;
         ,tags = "@AD-8"
 )
 public class CukesRunner {
-
 }
