@@ -126,7 +126,6 @@ public class Api_StepDefinitions {
                 .extract().response();
     }
 
-=======
 
     @Given("I perform get request to {string} endpoint")
     public void iPerformGetRequestToEndpoint(String endpoint)
