@@ -16,7 +16,7 @@ public class Api_StepDefinitions {
     Response response;
     private String endpoint;
     private String apiKey;
-    public String studentId;
+    String studentId;
 
     @Given("the {string} course endpoint is {string}")
     public void theSDETCourseEndpointIs(String courseType, String endpoint) {
@@ -117,7 +117,6 @@ public class Api_StepDefinitions {
                 .then()
                 .log().all()
                 .extract().response();
-
     }
 
 }
