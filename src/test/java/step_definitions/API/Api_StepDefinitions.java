@@ -102,6 +102,27 @@ public class Api_StepDefinitions {
         }
     }
 
+
+    @Given("I perform get request to {string} endpoint")
+    public void iPerformGetRequestToEndpoint(String endpoint)
+    {
+        RestAssured.baseURI = "https://tla-school-api.herokuapp.com/api/school/programs/";
+
+        Response response = RestAssured.given()
+                .when()
+                .get(endpoint)
+                .then()
+                .log()
+                .all()
+                .extract()
+                .response();
+        System.out.println(response.prettyPeek());
+    }
+
+    @Then("Verify response status code is {int}")
+    public void verifyResponseStatusCodeIs(int code) {
+        Assert.assertEquals(code, response.statusCode());
+    }
     @Given("I send a POST request to {string} with body:")
     public void iSendAPOSTRequestToWithBody(String endpoint, Map<String, String> inputBody) {
         CreateProjectPojos project = new CreateProjectPojos();

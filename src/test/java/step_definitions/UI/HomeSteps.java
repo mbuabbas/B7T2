@@ -65,7 +65,7 @@ public class HomeSteps {
                 BrowserUtils.isDisplayed(page.servicesBtns.get(1));
                 break;
             case "clients":
-                BrowserUtils.isDisplayed(page.clientsBtn);
+                BrowserUtils.isDisplayed(page.clientsBtns.get(1));
                 break;
             case "join us":
                 BrowserUtils.isDisplayed(page.joinUsBtns.get(1));
@@ -111,7 +111,7 @@ public class HomeSteps {
                 BrowserUtils.click(page.servicesBtns.get(1));
                 break;
             case "clients":
-                BrowserUtils.click(page.clientsBtn);
+                BrowserUtils.click(page.clientsBtns.get(1));
                 break;
             case "join us":
                 BrowserUtils.click(page.joinUsBtns.get(1));
@@ -142,6 +142,7 @@ public class HomeSteps {
 
     @Then("Verify title of the page is {string}")
     public void verifyTitleOfThePageIs(String title) {
+        BrowserUtils.waitForElementVisibility(page.instagramBtn);
         BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), title);
     }
 
@@ -286,8 +287,11 @@ public class HomeSteps {
                 break;
             }
         }
+        BrowserUtils.waitForElementVisibility(page.companyNamesInLine.get(numInList));
         if (isThere)
+        {
             BrowserUtils.assertEquals(page.companyNamesInLine.get(numInList).getAttribute("alt"),companyName);
+        }
     }
 
     @And("Verify {string} logo is displayed")
@@ -368,5 +372,34 @@ public class HomeSteps {
     @Then("Verify if clients message is displayed")
     public void verifyIfClientsMessageIsDisplayed() {
         BrowserUtils.assertTrue(page.clientsMsg.isDisplayed());
+    }
+
+    @Then("Verify header of the page is {string}")
+    public void verifyHeaderOfThePageIs(String header)
+    {
+        BrowserUtils.sleep(3000);
+        switch(header.toLowerCase())
+        {
+            case "home":
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.homeFirstHeader);
+                break;
+            case "about us":
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.aboutUsHeader);
+                break;
+            case "services":
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.servicesHeader);
+                break;
+            case "clients":
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.clientHeader);
+                break;
+            case "join us":
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.joinUsHeader);
+                break;
+            case "contact us":
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.contactUsHeader);
+                break;
+            default:
+                Assert.fail("Invalid header!");
+        }
     }
 }

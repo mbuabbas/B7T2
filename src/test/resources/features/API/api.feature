@@ -45,6 +45,12 @@ Feature: practice api
       | name     |
       | duration |
 
+
+  @AD-21
+  Scenario: Verify option to add new course to database
+    Given I perform get request to "devcourse" endpoint
+    Then Verify response status code is 200
+
   @AD-23
   Scenario: Add new student
     Given I send a POST request to "https://tla-school-api.herokuapp.com/api/school/resources/students" with body:
@@ -69,6 +75,7 @@ Feature: practice api
       | email     | test.com |
     Then the response status code is 200
     And the response body contains the following fields:
+
       | 665      |
       | Test     |
       | Test     |
