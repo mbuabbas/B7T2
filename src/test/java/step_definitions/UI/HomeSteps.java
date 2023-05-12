@@ -6,6 +6,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import pages.HomePage;
 import utils.BrowserUtils;
 
@@ -420,6 +423,38 @@ public class HomeSteps {
                 break;
             default:
                 Assert.fail("Invalid header!");
+        }
+    }
+
+    @Then("Verify {string} text is displayed")
+    public void verifyTextIsDisplayed(String text)
+    {
+        switch(text.toLowerCase())
+        {
+            case "welcome to advance systems llc.":
+                BrowserUtils.assertEquals(page.centerHeaderText.getText(), text);
+                BrowserUtils.moveIntoView(page.centerHeaderText);
+                BrowserUtils.pressKeyUp5Times();
+                BrowserUtils.sleep(1000);
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.centerHeaderText);
+                break;
+            case "our mission is simple, deliver very honest recruitment services to every customer.":
+                BrowserUtils.assertEquals(page.centerSecondaryHeader.getText(), text);
+                BrowserUtils.moveIntoView(page.centerSecondaryHeader);
+                BrowserUtils.pressKeyUp5Times();
+                BrowserUtils.sleep(1000);
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.centerSecondaryHeader);
+                break;
+            case "description":
+                BrowserUtils.assertTrue(!page.descriptionText.getText().isEmpty());
+                BrowserUtils.moveIntoView(page.descriptionText);
+                BrowserUtils.pressKeyUp5Times();
+                BrowserUtils.sleep(1000);
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.descriptionText);
+                break;
+            default:
+                Assert.fail("Invalid text!");
+
         }
     }
 }
