@@ -20,6 +20,7 @@ import java.util.Map;
 public class Api_StepDefinitions {
     Response response;
     private String endpoint;
+    private String apiKey;
     String studentId;
 
     @Given("the {string} course endpoint is {string}")
@@ -102,6 +103,29 @@ public class Api_StepDefinitions {
         }
     }
 
+
+    @Given("The API key is {string}")
+    public void theAPIKeyIs(String apiKey) {
+        this.apiKey = apiKey;
+    }
+
+    @And("The student ID is {string}")
+    public void theStudentIDIs(String studentId) {
+        this.studentId = studentId;
+    }
+
+    @When("The delete request is sent to {string}")
+    public void theDeleteRequestIsSentTo(String endpoint) {
+        RequestSpecification request = RestAssured.given();
+        response = request.header("Authorization", apiKey)
+                .when()
+                .delete(endpoint, this.studentId)
+                .then()
+                .log().all()
+                .extract().response();
+    }
+
+=======
 
     @Given("I perform get request to {string} endpoint")
     public void iPerformGetRequestToEndpoint(String endpoint)
@@ -194,4 +218,5 @@ public class Api_StepDefinitions {
         Assert.assertEquals(response.jsonPath().getString("duration"), "7 months");
 
     }
+
 }
