@@ -20,7 +20,7 @@ Feature: Home scenarios
     And Verify "READ MORE" button is visible
     Then Verify if section part of the Home Page refreshes and change display text to "Think Big. Achieve Bigger."
     And I click a "READ MORE"
-    Then Verify if button leads to "services.html" page
+    Then Verify if button leads to "services.html" end point page
 
 
   @AD-5

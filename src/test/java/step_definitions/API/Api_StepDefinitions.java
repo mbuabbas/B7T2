@@ -101,6 +101,7 @@ public class Api_StepDefinitions {
     @Given("The API key is {string}")
     public void theAPIKeyIs(String apiKey) {
         this.apiKey = apiKey;
+
     }
 
     @And("The student ID is {string}")
@@ -113,7 +114,7 @@ public class Api_StepDefinitions {
         RequestSpecification request = RestAssured.given();
         response = request.header("Authorization", apiKey)
                 .when()
-                .delete(endpoint, this.studentId)
+                .delete(endpoint, studentId)
                 .then()
                 .log().all()
                 .extract().response();
