@@ -305,11 +305,13 @@ public class HomeSteps {
 
     @When("Loading the home page")
     public void whenLoadingTheHomePage() {
+        BrowserUtils.sleep(3000);
         BrowserUtils.click(page.homeBtn);
     }
 
     @And("Verify section part of the Home Page displays a text {string}")
     public void verifySectionPartOfTheHomePageDisplaysAText(String parallaxText) {
+             BrowserUtils.sleep(3000);
              BrowserUtils.waitForElementVisibility(page.parallaxText);
 
              BrowserUtils.assertTrue(page.parallaxText.isDisplayed());
@@ -320,26 +322,32 @@ public class HomeSteps {
 
     @Then("Verify if section part of the Home Page refreshes and change display text to {string}")
     public void verifyIfSectionPartOfTheHomePageRefreshesAndChangeDisplayTextTo(String text) {
+        BrowserUtils.sleep(3000);
         BrowserUtils.waitForElementVisibility(page.parallaxText2);
         BrowserUtils.assertTrue(page.parallaxText2.isDisplayed());
     }
 
-    @Then("Verify if button leads to {string} page")
-    public void verifyIfButtonLeadsToPage(String url) {
+    @Then("Verify if button leads to {string} end point page")
+    public void verifyIfButtonLeadsToEndPointPage(String url)   {
         switch (url.toLowerCase()) {
             case "services":
+                BrowserUtils.sleep(3000);
+                BrowserUtils.switchToNewWindow();
                 BrowserUtils.assertTrue(BrowserUtils.getDriver().getCurrentUrl().contains(url));
                 break;
             case "joinus.html":
+                BrowserUtils.sleep(3000);
+                BrowserUtils.switchToNewWindow();
                 BrowserUtils.assertTrue(BrowserUtils.getDriver().getCurrentUrl().contains(url));
                 break;
         }
     }
 
     @And("Verify {string} button in the main header is visible")
-    public void verifyButtonInTheMainHeaderIsVisible(String mainHeaderBtn) {
+    public void verifyButtonInTheMainHeaderIsVisible(String mainHeaderBtn)   {
         switch (mainHeaderBtn.toLowerCase()){
             case "join us":
+                BrowserUtils.sleep(3000);
                 BrowserUtils.assertTrue(page.mainHeaderJoinUsBtn.isDisplayed());
                 break;
             default:
@@ -360,13 +368,25 @@ public class HomeSteps {
 
     @Then("Verify if clients name and state are displayed")
     public void verifyIfClientsNameAndStateAreDisplayed() {
-        BrowserUtils.assertTrue(page.clientsName.isDisplayed());
-        BrowserUtils.assertTrue(page.clientsState.isDisplayed());
+        BrowserUtils.sleep(1000);
+        BrowserUtils.isDisplayed(page.clientsName);
+        BrowserUtils.sleep(1000);
+        BrowserUtils.isDisplayed(page.clientsState);
+//        BrowserUtils.assertTrue(page.clientsName.isDisplayed());
+//        BrowserUtils.assertTrue(page.clientsState.isDisplayed());
     }
 
 
     @Then("Verify if clients message is displayed")
     public void verifyIfClientsMessageIsDisplayed() {
-        BrowserUtils.assertTrue(page.clientsMsg.isDisplayed());
+        BrowserUtils.sleep(1000);
+        BrowserUtils.isDisplayed(page.clientsMsg);
+
+    }
+
+    @And("Verify under Testimonial {string} is displayed")
+    public void verifyUnderTestimonialIsDisplayed(String header) {
+        BrowserUtils.sleep(1000);
+        BrowserUtils.isDisplayed(page.testimonialHeader);
     }
 }

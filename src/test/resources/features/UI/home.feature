@@ -32,7 +32,7 @@ Feature: Home scenarios
     When Loading the home page
     And Verify "Join Us" button in the main header is visible
     And Click on "Join Us" button in the main header
-    Then Verify if button leads to "joinUs.html" page
+    Then Verify if button leads to "joinUs.html" end point page
 
 
   @AD-8
@@ -52,8 +52,8 @@ Feature: Home scenarios
 
   @AD-11
     Scenario: Verify if testimonial has a "Word from our Clients" as a header and verify if message, name and state of the client is displayed
-      When Scroll down the homepage
-      And Verify "Words from our Clients" is displayed
+      When Loading the home page
+      And Verify under Testimonial "Words from our Clients" is displayed
       Then Verify if clients message is displayed
       Then Verify if clients name and state are displayed
 

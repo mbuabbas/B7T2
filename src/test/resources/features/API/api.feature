@@ -42,3 +42,12 @@ Feature: practice api
       | id       |
       | name     |
       | duration |
+
+  @AD-25
+    Scenario: Delete existing student in database
+      Given The API key is "d03e989018msh7f4691c614e87a9p1a8181j"
+      And The student ID is "5f6f5a4f88158f0017c3fff2"
+      When The delete request is sent to "/api/school/resources/students/{studentId}"
+      And the response status code is 200
+
+
