@@ -111,7 +111,7 @@ public class HomePage {
     @FindBy(xpath = "//input[@placeholder='Email Address...']")
     public WebElement emailInputField;
 
-    @FindBy(xpath = "(//a[@href='index.html'])[1]")
+    @FindBy(xpath = "(//a[@href='index.html'])[2]")
     public WebElement homeBtn;
 
     @FindBy(xpath = "(//h2[@class='white-heading'])[1]")
@@ -131,6 +131,8 @@ public class HomePage {
     public WebElement clientsMsg;
     @FindBy(xpath = "//div[@class='owl-item active']/descendant::div[@class='designation']")
     public WebElement clientsState;
+    @FindBy(xpath = "//div/h2[text()='Words from our Clients']")
+    public WebElement testimonialHeader;
     @FindBy(xpath = "//h2[@class='white-heading']")
     public WebElement homeFirstHeader;
     @FindBy(xpath = "//h1[text()='About Us']")
