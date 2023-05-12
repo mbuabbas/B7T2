@@ -5,10 +5,12 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Assert;
 import pages.CreateProjectPojos;
+import utils.CucumberLogUtils;
 
 
 import java.util.List;
@@ -18,6 +20,7 @@ import java.util.Map;
 public class Api_StepDefinitions {
     Response response;
     private String endpoint;
+    String studentId;
 
     @Given("the {string} course endpoint is {string}")
     public void theSDETCourseEndpointIs(String courseType, String endpoint) {
@@ -96,7 +99,6 @@ public class Api_StepDefinitions {
         response = response.then().log().all().extract().response();
         for (String field : expectedFields) {
             Assert.assertTrue(response.getBody().asString().contains(field));
-
         }
     }
 
@@ -138,10 +140,14 @@ public class Api_StepDefinitions {
                 .then().
                 log().all()
                 .extract().response();
+        studentId = response.jsonPath().getString("data._id");
+        System.out.println(studentId);
     }
 
     @Given("I perform a PUT request to {string} with body:")
     public void iPerformAPUTRequestToWithBody(String endpoint, Map<String, String> inputBody) {
+        System.out.println(studentId);
+
         CreateProjectPojos project = new CreateProjectPojos();
         project.setStreetAddress(inputBody.get("streetAddress"));
         project.setCity(inputBody.get("city"));
@@ -154,6 +160,18 @@ public class Api_StepDefinitions {
         project.setLastName(inputBody.get("lastName"));
         project.setBatch(inputBody.get("batch"));
         project.setEmail(inputBody.get("email"));
+
+        response = RestAssured.given()
+                .header("Content-type", "application/json")
+                .queryParam("key", "d03e989018msh7f4691c614e87a9p1a8181j")
+                .and()
+                .body(project)
+                .when()
+                .put(endpoint  + "/" + studentId)
+                .then().
+                log().all()
+                .extract().response();
+
     }
 
     @Given("I perform post request to {string} endpoint")

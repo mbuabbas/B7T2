@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
         glue = "step_definitions/API",
         stepNotifications = true,
         dryRun = false
-        ,tags = "@AS-21"
+//        ,tags = "@AD-24"
 )
 public class apiRunner {
 }

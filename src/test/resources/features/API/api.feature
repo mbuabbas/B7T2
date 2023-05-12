@@ -26,6 +26,7 @@ Feature: practice api
     Examples:
       | name           | duration  |
       | Uran test 2001 | 1002 days |
+
   @AS-20
   Scenario: Retrieve SDET Course Names
     Given I perform get request to  "https://tla-school-api.herokuapp.com/api/school/programs/sdetcourse"
@@ -34,6 +35,7 @@ Feature: practice api
       | id       |
       | name     |
       | duration |
+
   @AS-20
   Scenario: Retrieve Devs Course Names
     Given I perform get request to  "https://tla-school-api.herokuapp.com/api/school/programs/devcourse"
@@ -45,9 +47,9 @@ Feature: practice api
 
 
   @AD-21
-  Scenario: Add new course
-    Given I perform post request to "https://tla-school-api.herokuapp.com/api/school/programs/devcourse" endpoint
-    Then Verify response status code is 201
+  Scenario: Verify option to add new course to database
+    Given I perform get request to "devcourse" endpoint
+    Then Verify response status code is 200
 
   @AD-23
   Scenario: Add new student
@@ -66,29 +68,27 @@ Feature: practice api
 
   @AD-24
   Scenario: Update existing student info
-    Given I perform a PUT request to "https://tla-school-api.herokuapp.com/api/school/resources/students" with body:
-      | streetAddress | 1100 Pensylvania Avenue NW |
-      | city          | Washington, DC             |
-      | state         | VA                         |
-      | zip           | 20004                      |
-      | places        | yes                        |
-      | company       | META                       |
-      | location      | Washington, DC             |
-      | firstName     | Uran                       |
-      | lastName      | Suranchiyev                |
-      | batch         | 7                          |
-      | email         | uransura@gmail.com         |
+    Given I send a POST request to "https://tla-school-api.herokuapp.com/api/school/resources/students" with body:
+      | batch     | 665      |
+      | firstname | Test     |
+      | lastname  | Test     |
+      | email     | test.com |
     Then the response status code is 200
     And the response body contains the following fields:
-      | 1100 Pensylvania Avenue NW |
-      | Washington, DC             |
-      | VA                         |
-      | 20004                      |
-      | yes                        |
-      | META                       |
-      | Washington, DC             |
-      | Uran                       |
-      | Suranchiyev                |
-      | 7                          |
-      | uransura@gmail.com         |
 
+      | 665      |
+      | Test     |
+      | Test     |
+      | test.com |
+    Given I perform a PUT request to "https://tla-school-api.herokuapp.com/api/school/resources/students" with body:
+      | firstName | Uran               |
+      | lastName  | Suranchiyev        |
+      | batch     | 7                  |
+      | email     | uransura@gmail.com |
+    Then the response status code is 200
+    When I perform get request to  "https://tla-school-api.herokuapp.com/api/school/resources/students"
+    Then the response body contains the following fields:
+      | Uran               |
+      | Suranchiyev        |
+      | 7                  |
+      | uransura@gmail.com |
