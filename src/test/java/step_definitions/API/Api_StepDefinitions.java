@@ -5,11 +5,16 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Assert;
+import pages.CreateProjectPojos;
+import utils.CucumberLogUtils;
+
 
 import java.util.List;
+import java.util.Map;
 
 
 public class Api_StepDefinitions {
@@ -98,6 +103,7 @@ public class Api_StepDefinitions {
         }
     }
 
+
     @Given("The API key is {string}")
     public void theAPIKeyIs(String apiKey) {
         this.apiKey = apiKey;
@@ -118,6 +124,79 @@ public class Api_StepDefinitions {
                 .then()
                 .log().all()
                 .extract().response();
+    }
+
+=======
+
+    @Given("I perform get request to {string} endpoint")
+    public void iPerformGetRequestToEndpoint(String endpoint)
+    {
+        RestAssured.baseURI = "https://tla-school-api.herokuapp.com/api/school/programs/";
+
+        Response response = RestAssured.given()
+                .when()
+                .get(endpoint)
+                .then()
+                .log()
+                .all()
+                .extract()
+                .response();
+        System.out.println(response.prettyPeek());
+    }
+
+    @Then("Verify response status code is {int}")
+    public void verifyResponseStatusCodeIs(int code) {
+        Assert.assertEquals(code, response.statusCode());
+    }
+    @Given("I send a POST request to {string} with body:")
+    public void iSendAPOSTRequestToWithBody(String endpoint, Map<String, String> inputBody) {
+        CreateProjectPojos project = new CreateProjectPojos();
+        project.setBatch(inputBody.get("batch"));
+        project.setFirstName(inputBody.get("firstname"));
+        project.setLastName(inputBody.get("lastname"));
+        project.setEmail(inputBody.get("email"));
+
+
+        response = RestAssured.given().header("Content-type", "application/json")
+                .and()
+                .body(project)
+                .when()
+                .post(endpoint)
+                .then().
+                log().all()
+                .extract().response();
+        studentId = response.jsonPath().getString("data._id");
+        System.out.println(studentId);
+    }
+
+    @Given("I perform a PUT request to {string} with body:")
+    public void iPerformAPUTRequestToWithBody(String endpoint, Map<String, String> inputBody) {
+        System.out.println(studentId);
+
+        CreateProjectPojos project = new CreateProjectPojos();
+        project.setStreetAddress(inputBody.get("streetAddress"));
+        project.setCity(inputBody.get("city"));
+        project.setState(inputBody.get("state"));
+        project.setZip(inputBody.get("zip"));
+        project.setPlaces(inputBody.get("places"));
+        project.setCompany(inputBody.get("company"));
+        project.setLocation(inputBody.get("location"));
+        project.setFirstName(inputBody.get("firstName"));
+        project.setLastName(inputBody.get("lastName"));
+        project.setBatch(inputBody.get("batch"));
+        project.setEmail(inputBody.get("email"));
+
+        response = RestAssured.given()
+                .header("Content-type", "application/json")
+                .queryParam("key", "d03e989018msh7f4691c614e87a9p1a8181j")
+                .and()
+                .body(project)
+                .when()
+                .put(endpoint  + "/" + studentId)
+                .then().
+                log().all()
+                .extract().response();
+
     }
 
 }

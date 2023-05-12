@@ -40,15 +40,15 @@ Feature: Home scenarios
     When Scroll down the homepage
     Then Verify "<button name>" button is visible
     When Click on "<button name>" button
-    Then Verify title of the page is "Advance Systems - <button name>"
+    Then Verify header of the page is "<Header>"
     Examples:
-      | button name |
-      | Home        |
-      | About Us    |
-      | Services    |
-      | Clients     |
-      | Join Us     |
-      | Contact Us  |
+      | button name |Header    |
+      | Home        |Home      |
+      | About Us    |About Us  |
+      | Services    |Services  |
+      | Clients     |Clients   |
+      | Join Us     |Join Us   |
+      | Contact Us  |Contact Us|
 
   @AD-11
     Scenario: Verify if testimonial has a "Word from our Clients" as a header and verify if message, name and state of the client is displayed
@@ -116,9 +116,9 @@ Feature: Home scenarios
     Then Verify "Email: Info@advancesystems.us" is displayed
     Then Verify "Mon to Sat: 9.00 am to 5:00 pm" is displayed
 
-    @AD-16
-    Scenario: Verify Newsletter section has input field for Email Address
-      Then Verify "Email Address" place holder is displayed
+  @AD-16
+  Scenario: Verify Newsletter section has input field for Email Address
+    Then Verify "Email Address" place holder is displayed
 
   @AD-15
   Scenario Outline: Verify the social media buttons are displayed and should take you to those pages
