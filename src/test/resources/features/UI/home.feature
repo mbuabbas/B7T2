@@ -144,3 +144,9 @@ Feature: Home scenarios
       |alstom      |
       |hasting     |
       |solve       |
+
+  @AD-19
+  Scenario: Verify that main header section should have following text
+    Then Verify "Welcome to Advance Systems LLC." text is displayed
+    And Verify "Our Mission is simple, deliver very honest recruitment services to every customer." text is displayed
+    And Verify "Description" text is displayed

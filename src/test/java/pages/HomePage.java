@@ -144,6 +144,13 @@ public class HomePage {
     @FindBy(xpath = "//h1[text()='Contact Us']")
     public WebElement contactUsHeader;
 
+    @FindBy(xpath = "//div[@class='sec-title centered']/h2[contains(text(),'Welcom')]")
+    public WebElement centerHeaderText;
+    @FindBy(xpath = "//div[@class='title']/h4")
+    public WebElement centerSecondaryHeader;
+    @FindBy(xpath = "//div[@class='text']/p")
+    public WebElement descriptionText;
+
 }
 
   

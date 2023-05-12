@@ -43,12 +43,12 @@ Feature: practice api
       | name     |
       | duration |
 
-<<<<<<< HEAD
+
   @AD-21
-  Scenario: Verify option to add new course to database
-    Given I perform get request to "devcourse" endpoint
-    Then Verify response status code is 200
-=======
+  Scenario: Add new course
+    Given I perform post request to "https://tla-school-api.herokuapp.com/api/school/programs/devcourse" endpoint
+    Then Verify response status code is 201
+
   @AD-23
   Scenario: Add new student
     Given I send a POST request to "https://tla-school-api.herokuapp.com/api/school/resources/students" with body:
@@ -91,4 +91,4 @@ Feature: practice api
       | Suranchiyev                |
       | 7                          |
       | uransura@gmail.com         |
->>>>>>> main
+

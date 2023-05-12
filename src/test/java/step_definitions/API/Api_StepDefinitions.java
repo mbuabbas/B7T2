@@ -155,4 +155,25 @@ public class Api_StepDefinitions {
         project.setBatch(inputBody.get("batch"));
         project.setEmail(inputBody.get("email"));
     }
+
+    @Given("I perform post request to {string} endpoint")
+    public void iPerformPostRequestToEndpoint(String path)
+    {
+        String jsonPayload = "{\"name\":\"Paul\",\"duration\":\" 7 month\"}";
+        response = RestAssured.given()
+                .and()
+                .body(jsonPayload)
+                .when()
+                .post(path)
+                .then()
+                .log()
+                .all()
+                .extract()
+                .response();
+        System.out.println(response.prettyPeek());
+        System.out.println(response.jsonPath().getString("name"));
+        Assert.assertEquals(response.jsonPath().getString("name"),"Paul");
+        Assert.assertEquals(response.jsonPath().getString("duration"), "7 months");
+
+    }
 }
