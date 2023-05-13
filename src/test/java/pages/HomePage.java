@@ -10,6 +10,7 @@ import java.util.List;
 
 public class HomePage {
     public HomePage() {
+
         PageFactory.initElements(BrowserUtils.getDriver(), this);
     }
 
@@ -145,6 +146,9 @@ public class HomePage {
     public WebElement joinUsHeader;
     @FindBy(xpath = "//h1[text()='Contact Us']")
     public WebElement contactUsHeader;
+
+    @FindBy(xpath = "(//a[@href='about.html'])[1]")
+    public WebElement aboutUsBtn;
 
 }
 
