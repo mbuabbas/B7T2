@@ -42,3 +42,4 @@ Feature: practice api
       | id       |
       | name     |
       | duration |
+
