@@ -21,4 +21,13 @@ public class AboutUsPage {
     @FindBy(xpath = "(//h3)[3]")
     public WebElement goodTrackRecordsHeader;
 
+    @FindBy(xpath = "(//h1[normalize-space()='We are Recruitment Experts'])[1]")
+    public WebElement recExpertsHeader;
+
+    @FindBy(xpath = "//a[contains(text(), 'Our Services')]")
+    public WebElement ourServicesBtn;
+
+    @FindBy(xpath = "(//li[@class='current'])[1]")
+    public WebElement ourServicesPage;
+
 }
