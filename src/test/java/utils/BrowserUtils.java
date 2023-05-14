@@ -143,9 +143,10 @@ public class BrowserUtils {
     }
     public static void click(WebElement element){
         //TODO: apply report -> logInfo("clicked the button ", element);
-        waitForElementClickability(element);
         moveIntoView(element);
+        waitForElementClickability(element);
         highlightElement(element);
+        sleep(1000);
         element.click();
     }
     public static void assertEquals(String actual, String expected){
@@ -176,6 +177,14 @@ public class BrowserUtils {
         highlightElement(element);
         Assert.assertTrue(element.isDisplayed());
     }
+    public static void isDisplayedWithPressKeyUp(WebElement element){
+        waitForElementVisibility(element);
+        moveIntoView(element);
+        pressKeyUp5Times();
+        sleep(1000);
+        highlightElement(element);
+        Assert.assertTrue(element.isDisplayed());
+    }
     public static void isDisplayedWithSleep(WebElement element) {
         waitForElementVisibility(element);
         moveIntoView(element);
@@ -188,6 +197,14 @@ public class BrowserUtils {
         moveIntoView(element);
         highlightElement(element);
          Assert.assertTrue(element.isEnabled());
+    }
+    public static void isEnabledWithKeyUp(WebElement element){
+        waitForElementClickability(element);
+        moveIntoView(element);
+        pressKeyUp5Times();
+        sleep(500);
+        highlightElement(element);
+        Assert.assertTrue(element.isEnabled());
     }
     public static boolean isDisabled(WebElement element){
         moveIntoView(element);
