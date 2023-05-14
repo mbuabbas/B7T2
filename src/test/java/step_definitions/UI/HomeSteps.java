@@ -6,6 +6,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import pages.HomePage;
 import utils.BrowserUtils;
 
@@ -65,7 +68,7 @@ public class HomeSteps {
                 BrowserUtils.isDisplayed(page.servicesBtns.get(1));
                 break;
             case "clients":
-                BrowserUtils.isDisplayed(page.clientsBtn);
+                BrowserUtils.isDisplayed(page.clientsBtns.get(1));
                 break;
             case "join us":
                 BrowserUtils.isDisplayed(page.joinUsBtns.get(1));
@@ -111,7 +114,7 @@ public class HomeSteps {
                 BrowserUtils.click(page.servicesBtns.get(1));
                 break;
             case "clients":
-                BrowserUtils.click(page.clientsBtn);
+                BrowserUtils.click(page.clientsBtns.get(1));
                 break;
             case "join us":
                 BrowserUtils.click(page.joinUsBtns.get(1));
@@ -142,6 +145,7 @@ public class HomeSteps {
 
     @Then("Verify title of the page is {string}")
     public void verifyTitleOfThePageIs(String title) {
+        BrowserUtils.waitForElementVisibility(page.instagramBtn);
         BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), title);
     }
 
@@ -286,8 +290,11 @@ public class HomeSteps {
                 break;
             }
         }
+        BrowserUtils.waitForElementVisibility(page.companyNamesInLine.get(numInList));
         if (isThere)
+        {
             BrowserUtils.assertEquals(page.companyNamesInLine.get(numInList).getAttribute("alt"),companyName);
+        }
     }
 
     @And("Verify {string} logo is displayed")
@@ -305,11 +312,13 @@ public class HomeSteps {
 
     @When("Loading the home page")
     public void whenLoadingTheHomePage() {
+        BrowserUtils.sleep(3000);
         BrowserUtils.click(page.homeBtn);
     }
 
     @And("Verify section part of the Home Page displays a text {string}")
     public void verifySectionPartOfTheHomePageDisplaysAText(String parallaxText) {
+             BrowserUtils.sleep(3000);
              BrowserUtils.waitForElementVisibility(page.parallaxText);
 
              BrowserUtils.assertTrue(page.parallaxText.isDisplayed());
@@ -320,26 +329,32 @@ public class HomeSteps {
 
     @Then("Verify if section part of the Home Page refreshes and change display text to {string}")
     public void verifyIfSectionPartOfTheHomePageRefreshesAndChangeDisplayTextTo(String text) {
+        BrowserUtils.sleep(3000);
         BrowserUtils.waitForElementVisibility(page.parallaxText2);
         BrowserUtils.assertTrue(page.parallaxText2.isDisplayed());
     }
 
-    @Then("Verify if button leads to {string} page")
-    public void verifyIfButtonLeadsToPage(String url) {
+    @Then("Verify if button leads to {string} end point page")
+    public void verifyIfButtonLeadsToEndPointPage(String url)   {
         switch (url.toLowerCase()) {
             case "services":
+                BrowserUtils.sleep(3000);
+                BrowserUtils.switchToNewWindow();
                 BrowserUtils.assertTrue(BrowserUtils.getDriver().getCurrentUrl().contains(url));
                 break;
             case "joinus.html":
+                BrowserUtils.sleep(3000);
+                BrowserUtils.switchToNewWindow();
                 BrowserUtils.assertTrue(BrowserUtils.getDriver().getCurrentUrl().contains(url));
                 break;
         }
     }
 
     @And("Verify {string} button in the main header is visible")
-    public void verifyButtonInTheMainHeaderIsVisible(String mainHeaderBtn) {
+    public void verifyButtonInTheMainHeaderIsVisible(String mainHeaderBtn)   {
         switch (mainHeaderBtn.toLowerCase()){
             case "join us":
+                BrowserUtils.sleep(3000);
                 BrowserUtils.assertTrue(page.mainHeaderJoinUsBtn.isDisplayed());
                 break;
             default:
@@ -360,13 +375,86 @@ public class HomeSteps {
 
     @Then("Verify if clients name and state are displayed")
     public void verifyIfClientsNameAndStateAreDisplayed() {
-        BrowserUtils.assertTrue(page.clientsName.isDisplayed());
-        BrowserUtils.assertTrue(page.clientsState.isDisplayed());
+        BrowserUtils.sleep(1000);
+        BrowserUtils.isDisplayed(page.clientsName);
+        BrowserUtils.sleep(1000);
+        BrowserUtils.isDisplayed(page.clientsState);
+//        BrowserUtils.assertTrue(page.clientsName.isDisplayed());
+//        BrowserUtils.assertTrue(page.clientsState.isDisplayed());
     }
 
 
     @Then("Verify if clients message is displayed")
     public void verifyIfClientsMessageIsDisplayed() {
-        BrowserUtils.assertTrue(page.clientsMsg.isDisplayed());
+        BrowserUtils.sleep(1000);
+        BrowserUtils.isDisplayed(page.clientsMsg);
+
+    }
+
+    @And("Verify under Testimonial {string} is displayed")
+    public void verifyUnderTestimonialIsDisplayed(String header) {
+        BrowserUtils.sleep(1000);
+        BrowserUtils.isDisplayed(page.testimonialHeader);
+    }
+
+    @Then("Verify header of the page is {string}")
+    public void verifyHeaderOfThePageIs(String header)
+    {
+        BrowserUtils.sleep(3000);
+        switch(header.toLowerCase())
+        {
+            case "home":
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.homeFirstHeader);
+                break;
+            case "about us":
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.aboutUsHeader);
+                break;
+            case "services":
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.servicesHeader);
+                break;
+            case "clients":
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.clientHeader);
+                break;
+            case "join us":
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.joinUsHeader);
+                break;
+            case "contact us":
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.contactUsHeader);
+                break;
+            default:
+                Assert.fail("Invalid header!");
+        }
+    }
+
+    @Then("Verify {string} text is displayed")
+    public void verifyTextIsDisplayed(String text)
+    {
+        switch(text.toLowerCase())
+        {
+            case "welcome to advance systems llc.":
+                BrowserUtils.assertEquals(page.centerHeaderText.getText(), text);
+                BrowserUtils.moveIntoView(page.centerHeaderText);
+                BrowserUtils.pressKeyUp5Times();
+                BrowserUtils.sleep(1000);
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.centerHeaderText);
+                break;
+            case "our mission is simple, deliver very honest recruitment services to every customer.":
+                BrowserUtils.assertEquals(page.centerSecondaryHeader.getText(), text);
+                BrowserUtils.moveIntoView(page.centerSecondaryHeader);
+                BrowserUtils.pressKeyUp5Times();
+                BrowserUtils.sleep(1000);
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.centerSecondaryHeader);
+                break;
+            case "description":
+                BrowserUtils.assertTrue(!page.descriptionText.getText().isEmpty());
+                BrowserUtils.moveIntoView(page.descriptionText);
+                BrowserUtils.pressKeyUp5Times();
+                BrowserUtils.sleep(1000);
+                BrowserUtils.isDisplayedWithNoMoveInToView(page.descriptionText);
+                break;
+            default:
+                Assert.fail("Invalid text!");
+
+        }
     }
 }
