@@ -20,7 +20,7 @@ Feature: Home scenarios
     And Verify "READ MORE" button is visible
     Then Verify if section part of the Home Page refreshes and change display text to "Think Big. Achieve Bigger."
     And I click a "READ MORE"
-    Then Verify if button leads to "services.html" page
+    Then Verify if button leads to "services.html" end point page
 
 
   @AD-5
@@ -145,8 +145,10 @@ Feature: Home scenarios
       |hasting     |
       |solve       |
 
+
   @AD-19
   Scenario: Verify that main header section should have following text
     Then Verify "Welcome to Advance Systems LLC." text is displayed
     And Verify "Our Mission is simple, deliver very honest recruitment services to every customer." text is displayed
     And Verify "Description" text is displayed
+
