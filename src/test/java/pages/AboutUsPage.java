@@ -51,4 +51,13 @@ public class AboutUsPage {
     @FindBy(xpath = "//div[@class='lower-content']//descendant::*[text()='Daren Eldbridge']/following::div[@class='text']")
     public WebElement darenQuote;
 
+    @FindBy(xpath = "//html[@id='facebook']")
+    public WebElement facebookPage;
+    @FindBy(xpath = "//*[(text()='Explore')]")
+    public WebElement twitterPage;
+    @FindBy(xpath = "//a[@id='uhfCatLogo']")
+    public WebElement skypePageLogo;
+    @FindBy(xpath = "//*[@class='linkedin-text']")
+    public WebElement linkedInPageLogo;
+
 }

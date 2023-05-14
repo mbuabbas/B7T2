@@ -471,9 +471,4 @@ public class HomeSteps {
         }
     }
 
-    @Then("Verify if button leads to {string} page")
-    public void verifyIfButtonLeadsToPage(String page)
-    {
-        System.out.println("need to implement");
-    }
 }

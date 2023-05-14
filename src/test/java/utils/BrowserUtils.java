@@ -149,6 +149,16 @@ public class BrowserUtils {
         sleep(1000);
         element.click();
     }
+    public static void clickWithPressUpKey(WebElement element){
+        //TODO: apply report -> logInfo("clicked the button ", element);
+        moveIntoView(element);
+        waitForElementClickability(element);
+        sleep(500);
+        pressKeyUp5Times();
+        highlightElement(element);
+        sleep(1000);
+        element.click();
+    }
     public static void assertEquals(String actual, String expected){
         //TODO: apply report -> logInfo("Expected: " + expected);
         //TODO: apply report -> logInfo("Actual: " + actual);

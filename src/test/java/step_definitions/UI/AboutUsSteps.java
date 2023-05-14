@@ -3,6 +3,7 @@ package step_definitions.UI;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -135,5 +136,48 @@ public class AboutUsSteps {
             default:
                 Assert.fail("Test failed");
         }
+    }
+
+    @When("I click on social media button {string} under {string} picture")
+    public void iClickOnSocialMediaButtonUnderPicture(String socialMediaBtn, String staffName)
+    {
+        BrowserUtils.clickWithPressUpKey(BrowserUtils.getDriver().findElement(By.xpath("" +
+                "//div[@class='lower-content']//descendant::*[text()='" + staffName + "']" +
+                "/following::a[contains(@href,'" + socialMediaBtn + "')]")));
+    }
+
+    @Then("Verify that social media button {string} take to to corresponding page")
+    public void verifyThatSocialMediaButtonTakeToToCorrespondingPage(String socialMediaName)
+    {
+        switch (socialMediaName.toLowerCase())
+        {
+            case "facebook":
+                BrowserUtils.isDisplayed(page.facebookPage);
+                BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(),"https://www.facebook.com/");
+
+                break;
+            case "twitter":
+                BrowserUtils.isDisplayed(page.twitterPage);
+                BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(),"https://twitter.com/");
+
+                break;
+            case "skype":
+                BrowserUtils.isDisplayed(page.skypePageLogo);
+                BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(),"https://www.skype.com/en/");
+                break;
+            case "linkedin":
+                BrowserUtils.sleep(1000);
+                BrowserUtils.isDisplayed(page.linkedInPageLogo);
+                BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(),"https://www.linkedin.com/");
+                break;
+            default:
+                Assert.fail("Invalid Social Media page!");
+        }
+    }
+
+    @When("I navigate back to previous page")
+    public void iNavigateBackToPreviousPage()
+    {
+        BrowserUtils.getDriver().navigate().back();
     }
 }
