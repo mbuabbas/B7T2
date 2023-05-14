@@ -153,21 +153,29 @@ public class AboutUsSteps {
         {
             case "facebook":
                 BrowserUtils.isDisplayed(page.facebookPage);
+                BrowserUtils.sleep(500);
+                BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), "Facebook - log in or sign up");
                 BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(),"https://www.facebook.com/");
 
                 break;
             case "twitter":
                 BrowserUtils.isDisplayed(page.twitterPage);
+                BrowserUtils.sleep(500);
+                BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), "Explore / Twitter");
                 BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(),"https://twitter.com/");
 
                 break;
             case "skype":
                 BrowserUtils.isDisplayed(page.skypePageLogo);
+                BrowserUtils.sleep(500);
+                BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), "Skype | Stay connected with free video calls worldwide");
                 BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(),"https://www.skype.com/en/");
                 break;
             case "linkedin":
-                BrowserUtils.sleep(1000);
+                BrowserUtils.sleep(2000);
                 BrowserUtils.isDisplayed(page.linkedInPageLogo);
+                BrowserUtils.sleep(500);
+                BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), "LinkedIn: Log In or Sign Up");
                 BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(),"https://www.linkedin.com/");
                 break;
             default:
