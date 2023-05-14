@@ -38,13 +38,12 @@ public class AboutUsSteps {
 
     }
 
-
-
-    @Then("Verify if following {string} are displayed:")
+    @Then("Verify if following {string} are displayed")
     public void verifyIfFollowingAreDisplayed(String header) {
-        switch (header.toLowerCase()){
+        switch (header.toLowerCase()) {
             case "on time services":
                 BrowserUtils.isDisplayed(page.onTimeServicesHeader);
+                BrowserUtils.moveIntoView(page.onTimeServicesHeader);
                 BrowserUtils.assertEquals(page.onTimeServicesHeader.getText(), header);
                 break;
             case "experienced team":
