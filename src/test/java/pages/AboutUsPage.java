@@ -60,4 +60,5 @@ public class AboutUsPage {
     @FindBy(xpath = "//*[@class='linkedin-text']")
     public WebElement linkedInPageLogo;
 
+
 }
