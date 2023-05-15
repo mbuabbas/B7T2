@@ -1,13 +1,16 @@
 package utils;
 
+import io.cucumber.java.bs.A;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -148,8 +151,8 @@ public class BrowserUtils {
     public static void assertEquals(String actual, String expected){
         //TODO: apply report -> logInfo("Expected: " + expected);
         //TODO: apply report -> logInfo("Actual: " + actual);
-        CucumberLogUtils.logInfo("Actual: " + actual, true);
-        CucumberLogUtils.logInfo("Expected: " + expected, true);
+        CucumberLogUtils.logInfo("Actual: " + actual, false);
+        CucumberLogUtils.logInfo("Expected: " + expected, false);
         Assert.assertEquals(expected, actual);
     }
     public static void assertFalse(boolean result){
@@ -170,6 +173,13 @@ public class BrowserUtils {
     }
     public static void isDisplayedWithNoMoveInToView(WebElement element){
         waitForElementVisibility(element);
+        highlightElement(element);
+        Assert.assertTrue(element.isDisplayed());
+    }
+    public static void isDisplayedWithSleep(WebElement element) {
+        waitForElementVisibility(element);
+        moveIntoView(element);
+        sleep(2000);
         highlightElement(element);
         Assert.assertTrue(element.isDisplayed());
     }
@@ -199,5 +209,15 @@ public class BrowserUtils {
             driver.quit();
             driver = null;
         }
+    }
+    public static void pressKeyUp5Times()
+    {
+        Actions action  = new Actions(BrowserUtils.getDriver());
+        action.sendKeys(Keys.ARROW_UP).perform();
+        action.sendKeys(Keys.ARROW_UP).perform();
+        action.sendKeys(Keys.ARROW_UP).perform();
+        action.sendKeys(Keys.ARROW_UP).perform();
+        action.sendKeys(Keys.ARROW_UP).perform();
+
     }
 }
