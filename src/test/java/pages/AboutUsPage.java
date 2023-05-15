@@ -60,5 +60,16 @@ public class AboutUsPage {
     @FindBy(xpath = "//*[@class='linkedin-text']")
     public WebElement linkedInPageLogo;
 
+    @FindBy(xpath = "(//h1[normalize-space()='We are Recruitment Experts'])[1]")
+    public WebElement recExpertsHeader;
+
+    @FindBy(xpath = "//a[contains(text(), 'Our Services')]")
+    public WebElement ourServicesBtn;
+
+    @FindBy(xpath = "(//li[@class='current'])[1]")
+    public WebElement ourServicesPage;
 
 }
+
+
+
