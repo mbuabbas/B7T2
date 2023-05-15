@@ -77,7 +77,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <projectName>Project Team 1</projectName>
+                            <projectName>B7T2</projectName>
                             <skip>false</skip>
                             <!-- output directory for the generated report -->
                             <outputDirectory>${project.build.directory}/cucumber-reports</outputDirectory>

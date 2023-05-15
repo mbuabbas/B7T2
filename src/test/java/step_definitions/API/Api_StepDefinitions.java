@@ -21,6 +21,7 @@ import java.util.Map;
 public class Api_StepDefinitions {
     Response response;
     private String endpoint;
+    private String apiKey;
     String studentId;
 
     @Given("the {string} course endpoint is {string}")
@@ -104,9 +105,31 @@ public class Api_StepDefinitions {
     }
 
 
+    @Given("The API key is {string}")
+    public void theAPIKeyIs(String apiKey) {
+        this.apiKey = apiKey;
+
+    }
+
+    @And("The student ID is {string}")
+    public void theStudentIDIs(String studentId) {
+        this.studentId = studentId;
+    }
+
+    @When("The delete request is sent to {string}")
+    public void theDeleteRequestIsSentTo(String endpoint) {
+        RequestSpecification request = RestAssured.given();
+        response = request.header("Authorization", apiKey)
+                .when()
+                .delete(endpoint, studentId)
+                .then()
+                .log().all()
+                .extract().response();
+    }
+
+
     @Given("I perform get request to {string} endpoint")
-    public void iPerformGetRequestToEndpoint(String endpoint)
-    {
+    public void iPerformGetRequestToEndpoint(String endpoint) {
         RestAssured.baseURI = "https://tla-school-api.herokuapp.com/api/school/programs/";
 
         Response response = RestAssured.given()
@@ -124,6 +147,7 @@ public class Api_StepDefinitions {
     public void verifyResponseStatusCodeIs(int code) {
         Assert.assertEquals(code, response.statusCode());
     }
+
     @Given("I send a POST request to {string} with body:")
     public void iSendAPOSTRequestToWithBody(String endpoint, Map<String, String> inputBody) {
         CreateProjectPojos project = new CreateProjectPojos();
@@ -168,7 +192,7 @@ public class Api_StepDefinitions {
                 .and()
                 .body(project)
                 .when()
-                .put(endpoint  + "/" + studentId)
+                .put(endpoint + "/" + studentId)
                 .then().
                 log().all()
                 .extract().response();
@@ -203,5 +227,25 @@ public class Api_StepDefinitions {
     @And("the response body contains the error message {string}")
     public void theResponseBodyContainsTheErrorMessage(String expectedResponse) {
         Assert.assertEquals(response.then().extract().body().jsonPath().get("message"), expectedResponse);
+    }
+
+    @Given("I perform post request to {string} endpoint")
+    public void iPerformPostRequestToEndpoint(String path) {
+        String jsonPayload = "{\"name\":\"Paul\",\"duration\":\" 7 month\"}";
+        response = RestAssured.given()
+                .and()
+                .body(jsonPayload)
+                .when()
+                .post(path)
+                .then()
+                .log()
+                .all()
+                .extract()
+                .response();
+        System.out.println(response.prettyPeek());
+        System.out.println(response.jsonPath().getString("name"));
+        Assert.assertEquals(response.jsonPath().getString("name"), "Paul");
+        Assert.assertEquals(response.jsonPath().getString("duration"), "7 months");
+
     }
 }

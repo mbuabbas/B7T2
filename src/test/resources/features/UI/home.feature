@@ -20,7 +20,7 @@ Feature: Home scenarios
     And Verify "READ MORE" button is visible
     Then Verify if section part of the Home Page refreshes and change display text to "Think Big. Achieve Bigger."
     And I click a "READ MORE"
-    Then Verify if button leads to "services.html" page
+    Then Verify if button leads to "services.html" end point page
 
 
   @AD-5
@@ -32,7 +32,7 @@ Feature: Home scenarios
     When Loading the home page
     And Verify "Join Us" button in the main header is visible
     And Click on "Join Us" button in the main header
-    Then Verify if button leads to "joinUs.html" page
+    Then Verify if button leads to "joinUs.html" end point page
 
 
   @AD-8
@@ -52,8 +52,8 @@ Feature: Home scenarios
 
   @AD-11
     Scenario: Verify if testimonial has a "Word from our Clients" as a header and verify if message, name and state of the client is displayed
-      When Scroll down the homepage
-      And Verify "Words from our Clients" is displayed
+      When Loading the home page
+      And Verify under Testimonial "Words from our Clients" is displayed
       Then Verify if clients message is displayed
       Then Verify if clients name and state are displayed
 
@@ -144,3 +144,11 @@ Feature: Home scenarios
       |alstom      |
       |hasting     |
       |solve       |
+
+
+  @AD-19
+  Scenario: Verify that main header section should have following text
+    Then Verify "Welcome to Advance Systems LLC." text is displayed
+    And Verify "Our Mission is simple, deliver very honest recruitment services to every customer." text is displayed
+    And Verify "Description" text is displayed
+

@@ -1,13 +1,16 @@
 package utils;
 
+import io.cucumber.java.bs.A;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -140,16 +143,27 @@ public class BrowserUtils {
     }
     public static void click(WebElement element){
         //TODO: apply report -> logInfo("clicked the button ", element);
-        waitForElementClickability(element);
         moveIntoView(element);
+        waitForElementClickability(element);
         highlightElement(element);
+        sleep(1000);
+        element.click();
+    }
+    public static void clickWithPressUpKey(WebElement element){
+        //TODO: apply report -> logInfo("clicked the button ", element);
+        moveIntoView(element);
+        waitForElementClickability(element);
+        sleep(500);
+        pressKeyUp5Times();
+        highlightElement(element);
+        sleep(1000);
         element.click();
     }
     public static void assertEquals(String actual, String expected){
         //TODO: apply report -> logInfo("Expected: " + expected);
         //TODO: apply report -> logInfo("Actual: " + actual);
-        CucumberLogUtils.logInfo("Actual: " + actual, true);
-        CucumberLogUtils.logInfo("Expected: " + expected, true);
+        CucumberLogUtils.logInfo("Actual: " + actual, false);
+        CucumberLogUtils.logInfo("Expected: " + expected, false);
         Assert.assertEquals(expected, actual);
     }
     public static void assertFalse(boolean result){
@@ -173,11 +187,34 @@ public class BrowserUtils {
         highlightElement(element);
         Assert.assertTrue(element.isDisplayed());
     }
+    public static void isDisplayedWithPressKeyUp(WebElement element){
+        waitForElementVisibility(element);
+        moveIntoView(element);
+        pressKeyUp5Times();
+        sleep(1000);
+        highlightElement(element);
+        Assert.assertTrue(element.isDisplayed());
+    }
+    public static void isDisplayedWithSleep(WebElement element) {
+        waitForElementVisibility(element);
+        moveIntoView(element);
+        sleep(2000);
+        highlightElement(element);
+        Assert.assertTrue(element.isDisplayed());
+    }
     public static void isEnabled(WebElement element){
         waitForElementClickability(element);
         moveIntoView(element);
         highlightElement(element);
          Assert.assertTrue(element.isEnabled());
+    }
+    public static void isEnabledWithKeyUp(WebElement element){
+        waitForElementClickability(element);
+        moveIntoView(element);
+        pressKeyUp5Times();
+        sleep(500);
+        highlightElement(element);
+        Assert.assertTrue(element.isEnabled());
     }
     public static boolean isDisabled(WebElement element){
         moveIntoView(element);
@@ -199,5 +236,15 @@ public class BrowserUtils {
             driver.quit();
             driver = null;
         }
+    }
+    public static void pressKeyUp5Times()
+    {
+        Actions action  = new Actions(BrowserUtils.getDriver());
+        action.sendKeys(Keys.ARROW_UP).perform();
+        action.sendKeys(Keys.ARROW_UP).perform();
+        action.sendKeys(Keys.ARROW_UP).perform();
+        action.sendKeys(Keys.ARROW_UP).perform();
+        action.sendKeys(Keys.ARROW_UP).perform();
+
     }
 }

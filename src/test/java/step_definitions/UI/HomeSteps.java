@@ -6,14 +6,20 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+import pages.AboutUsPage;
 import pages.HomePage;
 import utils.BrowserUtils;
 
 public class HomeSteps {
     HomePage page;
+    AboutUsPage aboutUsPage;
 
     public HomeSteps() {
         page = new HomePage();
+        aboutUsPage = new AboutUsPage();
     }
 
     @Then("Verify button {string} is displayed")
@@ -251,7 +257,6 @@ public class HomeSteps {
             case "Leadership Development":
                 BrowserUtils.assertEquals(BrowserUtils.getText(page.leadershipDev),item);
                 break;
-
             case "Capability Building":
                 BrowserUtils.assertEquals(BrowserUtils.getText(page.capabilityBuilding),item);
                 break;
@@ -265,8 +270,8 @@ public class HomeSteps {
             case "Excellent Customer Service":
                 BrowserUtils.assertEquals(BrowserUtils.getText(page.customerService),item);
                 break;
-            //default:
-                //Assert.fail("Invalid text");
+            default:
+                Assert.fail("Invalid text");
         }
     }
 
@@ -309,11 +314,13 @@ public class HomeSteps {
 
     @When("Loading the home page")
     public void whenLoadingTheHomePage() {
+        BrowserUtils.sleep(3000);
         BrowserUtils.click(page.homeBtn);
     }
 
     @And("Verify section part of the Home Page displays a text {string}")
     public void verifySectionPartOfTheHomePageDisplaysAText(String parallaxText) {
+             BrowserUtils.sleep(3000);
              BrowserUtils.waitForElementVisibility(page.parallaxText);
 
              BrowserUtils.assertTrue(page.parallaxText.isDisplayed());
@@ -324,26 +331,32 @@ public class HomeSteps {
 
     @Then("Verify if section part of the Home Page refreshes and change display text to {string}")
     public void verifyIfSectionPartOfTheHomePageRefreshesAndChangeDisplayTextTo(String text) {
+        BrowserUtils.sleep(3000);
         BrowserUtils.waitForElementVisibility(page.parallaxText2);
         BrowserUtils.assertTrue(page.parallaxText2.isDisplayed());
     }
 
-    @Then("Verify if button leads to {string} page")
-    public void verifyIfButtonLeadsToPage(String url) {
+    @Then("Verify if button leads to {string} end point page")
+    public void verifyIfButtonLeadsToEndPointPage(String url)   {
         switch (url.toLowerCase()) {
             case "services":
+                BrowserUtils.sleep(3000);
+                BrowserUtils.switchToNewWindow();
                 BrowserUtils.assertTrue(BrowserUtils.getDriver().getCurrentUrl().contains(url));
                 break;
             case "joinus.html":
+                BrowserUtils.sleep(3000);
+                BrowserUtils.switchToNewWindow();
                 BrowserUtils.assertTrue(BrowserUtils.getDriver().getCurrentUrl().contains(url));
                 break;
         }
     }
 
     @And("Verify {string} button in the main header is visible")
-    public void verifyButtonInTheMainHeaderIsVisible(String mainHeaderBtn) {
+    public void verifyButtonInTheMainHeaderIsVisible(String mainHeaderBtn)   {
         switch (mainHeaderBtn.toLowerCase()){
             case "join us":
+                BrowserUtils.sleep(3000);
                 BrowserUtils.assertTrue(page.mainHeaderJoinUsBtn.isDisplayed());
                 break;
             default:
@@ -364,14 +377,26 @@ public class HomeSteps {
 
     @Then("Verify if clients name and state are displayed")
     public void verifyIfClientsNameAndStateAreDisplayed() {
-        BrowserUtils.assertTrue(page.clientsName.isDisplayed());
-        BrowserUtils.assertTrue(page.clientsState.isDisplayed());
+        BrowserUtils.sleep(1000);
+        BrowserUtils.isDisplayed(page.clientsName);
+        BrowserUtils.sleep(1000);
+        BrowserUtils.isDisplayed(page.clientsState);
+//        BrowserUtils.assertTrue(page.clientsName.isDisplayed());
+//        BrowserUtils.assertTrue(page.clientsState.isDisplayed());
     }
 
 
     @Then("Verify if clients message is displayed")
     public void verifyIfClientsMessageIsDisplayed() {
-        BrowserUtils.assertTrue(page.clientsMsg.isDisplayed());
+        BrowserUtils.sleep(1000);
+        BrowserUtils.isDisplayed(page.clientsMsg);
+
+    }
+
+    @And("Verify under Testimonial {string} is displayed")
+    public void verifyUnderTestimonialIsDisplayed(String header) {
+        BrowserUtils.sleep(1000);
+        BrowserUtils.isDisplayed(page.testimonialHeader);
     }
 
     @Then("Verify header of the page is {string}")
@@ -402,4 +427,48 @@ public class HomeSteps {
                 Assert.fail("Invalid header!");
         }
     }
+
+    @Then("Verify {string} text is displayed")
+    public void verifyTextIsDisplayed(String text)
+    {
+        switch(text.toLowerCase())
+        {
+            case "welcome to advance systems llc.":
+                BrowserUtils.assertEquals(page.centerHeaderText.getText(), text);
+                BrowserUtils.isDisplayedWithPressKeyUp(page.centerHeaderText);
+                break;
+            case "our mission is simple, deliver very honest recruitment services to every customer.":
+                BrowserUtils.assertEquals(page.centerSecondaryHeader.getText(), text);
+                BrowserUtils.isDisplayedWithPressKeyUp(page.centerSecondaryHeader);
+                break;
+            case "description":
+                BrowserUtils.assertTrue(!page.descriptionText.getText().isEmpty());
+                BrowserUtils.isDisplayedWithPressKeyUp(page.descriptionText);
+                break;
+            case "meet our experts":
+                BrowserUtils.assertEquals(aboutUsPage.meetOurExpertHeader.getText(), text);
+                BrowserUtils.isDisplayedWithPressKeyUp(aboutUsPage.meetOurExpertHeader);
+                break;
+            case "richard quote":
+                BrowserUtils.assertTrue(!aboutUsPage.richardQuote.getText().isEmpty());
+                BrowserUtils.isDisplayedWithPressKeyUp(aboutUsPage.richardQuote);
+                break;
+            case "charz quote":
+                BrowserUtils.assertTrue(!aboutUsPage.charzQuote.getText().isEmpty());
+                BrowserUtils.isDisplayedWithPressKeyUp(aboutUsPage.charzQuote);
+                break;
+            case "eliot quote":
+                BrowserUtils.assertTrue(!aboutUsPage.eliotQuote.getText().isEmpty());
+                BrowserUtils.isDisplayedWithPressKeyUp(aboutUsPage.eliotQuote);
+                break;
+            case "daren quote":
+                BrowserUtils.assertTrue(!aboutUsPage.darenQuote.getText().isEmpty());
+                BrowserUtils.isDisplayedWithPressKeyUp(aboutUsPage.darenQuote);
+                break;
+            default:
+                Assert.fail("Invalid text!");
+
+        }
+    }
+
 }
