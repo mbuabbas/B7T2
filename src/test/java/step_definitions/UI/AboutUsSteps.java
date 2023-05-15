@@ -11,7 +11,7 @@ import pages.AboutUsPage;
 import pages.HomePage;
 import utils.BrowserUtils;
 
-import java.time.Instant;
+
 
 
 public class AboutUsSteps {
@@ -188,6 +188,37 @@ public class AboutUsSteps {
     public void iNavigateBackToPreviousPage()
     {
         BrowserUtils.getDriver().navigate().back();
+    }
+
+
+    @And("Verify Under Expert section a header text {string} is displayed")
+    public void verifyUnderExpertSectionAHeaderTextIsDisplayed(String headerTxt) {
+        BrowserUtils.sleep(4000);
+        BrowserUtils.isDisplayed(page.recExpertsHeader);
+
+
+    }
+
+    @When("I click on {string} button")
+    public void iClickOnButton(String ourServicesBtn) {
+        switch (ourServicesBtn.toLowerCase()){
+            case "our services":
+                BrowserUtils.sleep(4000);
+                BrowserUtils.click(page.ourServicesBtn);
+                BrowserUtils.switchToNewWindow();
+                break;
+            default:
+                Assert.fail("Test Failed");
+        }
+
+    }
+
+    @Then("Verify {string} button takes the user to the Services page")
+    public void verifyButtonTakesTheUserToTheServicesPage(String servicesPage) {
+        BrowserUtils.sleep(1000);
+        BrowserUtils.isDisplayed(page.ourServicesPage);
+
+
     }
 }
 

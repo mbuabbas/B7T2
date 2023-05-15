@@ -67,4 +67,10 @@ Feature: AboutUs Page Scenarios
       | Eliot Hananiah  |
       | Daren Eldbridge |
 
+  @AD-31
+  Scenario: About Us page: Call to action button
+    Given That the user navigates to the About Us Page
+    And Verify Under Expert section a header text "We are Recruitment Experts" is displayed
+    When I click on "Our Services" button
+    Then Verify "Our Services" button takes the user to the Services page
 
