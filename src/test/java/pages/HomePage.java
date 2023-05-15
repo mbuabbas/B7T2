@@ -10,6 +10,7 @@ import java.util.List;
 
 public class HomePage {
     public HomePage() {
+
         PageFactory.initElements(BrowserUtils.getDriver(), this);
     }
 
@@ -38,7 +39,7 @@ public class HomePage {
     @FindBy(xpath = "//a[text()='Services']")
     public List<WebElement> servicesBtns = new ArrayList<>();
     @FindBy(xpath = "//a[text()='Clients']")
-    public WebElement clientsBtn;
+    public List<WebElement> clientsBtns = new ArrayList<>();
     @FindBy(xpath = "//a[text()='Join Us']")
     public List<WebElement> joinUsBtns = new ArrayList<>();
     @FindBy(xpath = "//a[text()='Contact Us']")
@@ -110,6 +111,51 @@ public class HomePage {
 
     @FindBy(xpath = "//input[@placeholder='Email Address...']")
     public WebElement emailInputField;
+
+    @FindBy(xpath = "(//a[@href='index.html'])[2]")
+    public WebElement homeBtn;
+
+    @FindBy(xpath = "(//h2[@class='white-heading'])[1]")
+    public WebElement parallaxText;
+    @FindBy(xpath = "(//h2[@class='white-heading'])[2]")
+    public WebElement parallaxText2;
+
+    @FindBy(xpath = "(//a[@href='services.html'])[4]")
+    public WebElement readMoreBtn4;
+
+    @FindBy(xpath = "(//a[@href='joinUs.html'])[2]")
+    public WebElement mainHeaderJoinUsBtn;
+
+    @FindBy(xpath = "//div[@class='owl-item active']/descendant::h3")
+    public WebElement clientsName;
+    @FindBy(xpath = "(//div[@class='owl-item active'])[1]")
+    public WebElement clientsMsg;
+    @FindBy(xpath = "//div[@class='owl-item active']/descendant::div[@class='designation']")
+    public WebElement clientsState;
+    @FindBy(xpath = "//div/h2[text()='Words from our Clients']")
+    public WebElement testimonialHeader;
+    @FindBy(xpath = "//h2[@class='white-heading']")
+    public WebElement homeFirstHeader;
+    @FindBy(xpath = "//h1[text()='About Us']")
+    public WebElement aboutUsHeader;
+    @FindBy(xpath = "//h1[text()='Our Divisions']")
+    public WebElement servicesHeader;
+    @FindBy(xpath = "//h1[text()='Our Clients']")
+    public WebElement clientHeader;
+    @FindBy(xpath = "//h1[text()='Join Us']")
+    public WebElement joinUsHeader;
+    @FindBy(xpath = "//h1[text()='Contact Us']")
+    public WebElement contactUsHeader;
+    @FindBy(xpath = "(//a[@href='about.html'])[1]")
+    public WebElement aboutUsBtn;
+
+    @FindBy(xpath = "//div[@class='sec-title centered']/h2[contains(text(),'Welcom')]")
+    public WebElement centerHeaderText;
+    @FindBy(xpath = "//div[@class='title']/h4")
+    public WebElement centerSecondaryHeader;
+    @FindBy(xpath = "//div[@class='text']/p")
+    public WebElement descriptionText;
+
 }
 
   

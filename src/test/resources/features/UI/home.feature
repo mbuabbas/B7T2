@@ -13,9 +13,26 @@ Feature: Home scenarios
       | Spanish     |
       | French      |
 
+  @AD-4
+  Scenario: There should be a section under navigation bar with Header, description and Read More button. Button should take the user to “Services” page. Section content should refresh with new set of header and description every 10-15 seconds.
+    When Loading the home page
+    And Verify section part of the Home Page displays a text "A bright career is waiting for you..."
+    And Verify "READ MORE" button is visible
+    Then Verify if section part of the Home Page refreshes and change display text to "Think Big. Achieve Bigger."
+    And I click a "READ MORE"
+    Then Verify if button leads to "services.html" end point page
+
+
   @AD-5
   Scenario: Verify title of the homepage should be "Advance Systems - Home"
     Then Verify title of the homepage be "Advance Systems - Home"
+
+  @AD-7
+    Scenario: Verify if Join Us button is displayed on the main content of home page and verify if button leads to "Join Us" page
+    When Loading the home page
+    And Verify "Join Us" button in the main header is visible
+    And Click on "Join Us" button in the main header
+    Then Verify if button leads to "joinUs.html" end point page
 
 
   @AD-8
@@ -23,15 +40,26 @@ Feature: Home scenarios
     When Scroll down the homepage
     Then Verify "<button name>" button is visible
     When Click on "<button name>" button
-    Then Verify title of the page is "Advance Systems - <button name>"
+    Then Verify header of the page is "<Header>"
     Examples:
-      | button name |
-      | Home        |
-      | About Us    |
-      | Services    |
-      | Clients     |
-      | Join Us     |
-      | Contact Us  |
+      | button name |Header    |
+      | Home        |Home      |
+      | About Us    |About Us  |
+      | Services    |Services  |
+      | Clients     |Clients   |
+      | Join Us     |Join Us   |
+      | Contact Us  |Contact Us|
+
+  @AD-11
+    Scenario: Verify if testimonial has a "Word from our Clients" as a header and verify if message, name and state of the client is displayed
+      When Loading the home page
+      And Verify under Testimonial "Words from our Clients" is displayed
+      Then Verify if clients message is displayed
+      Then Verify if clients name and state are displayed
+
+
+
+
 
   @AD-14
   Scenario Outline: Verify following links displayed and work as expected by opening corresponding page
@@ -88,9 +116,9 @@ Feature: Home scenarios
     Then Verify "Email: Info@advancesystems.us" is displayed
     Then Verify "Mon to Sat: 9.00 am to 5:00 pm" is displayed
 
-    @AD-16
-    Scenario: Verify Newsletter section has input field for Email Address
-      Then Verify "Email Address" place holder is displayed
+  @AD-16
+  Scenario: Verify Newsletter section has input field for Email Address
+    Then Verify "Email Address" place holder is displayed
 
   @AD-15
   Scenario Outline: Verify the social media buttons are displayed and should take you to those pages
@@ -116,3 +144,11 @@ Feature: Home scenarios
       |alstom      |
       |hasting     |
       |solve       |
+
+
+  @AD-19
+  Scenario: Verify that main header section should have following text
+    Then Verify "Welcome to Advance Systems LLC." text is displayed
+    And Verify "Our Mission is simple, deliver very honest recruitment services to every customer." text is displayed
+    And Verify "Description" text is displayed
+
