@@ -85,3 +85,23 @@ Feature: practice api
       | Suranchiyev        |
       | 7                  |
       | uransura@gmail.com |
+
+  @AD-26
+  Scenario: Get bearer token retrieval with
+    Given I perform get request to  "https://tla-school-api.herokuapp.com/api/school/departments/gettoken" with credentials:
+      | username | user    |
+      | password | user123 |
+    Then the response status code is 200
+    And Verify response should return bearer token
+
+  @AD-26
+  Scenario Outline: Error message should be returned in case credentials are invalid.
+    Given I perform get request to "https://tla-school-api.herokuapp.com/api/school/departments/gettoken" with following invalid "<username>" and "<password>"
+    And the response body contains the error message "Valid username and password required"
+    And the response status code is 401
+    Examples:
+      | username | password |
+      | user     | user$123 |
+      | 124      | @#@      |
+      | $#@      | user     |
+      | u        | 124      |

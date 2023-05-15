@@ -8,6 +8,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.hamcrest.Matchers;
 import org.junit.Assert;
 import pages.CreateProjectPojos;
 import utils.CucumberLogUtils;
@@ -151,5 +152,35 @@ public class Api_StepDefinitions {
                 log().all()
                 .extract().response();
 
+    }
+
+    @Given("I perform get request to  {string} with credentials:")
+    public void iPerformGetRequestToWithCredentials(String endpoint, Map<String,String> inputBody) {
+        String username = inputBody.get("username");
+        String password = inputBody.get("password");
+        response = RestAssured.given()
+                .header("Content-type", "application/json")
+                .auth().preemptive().basic(username, password)
+                .when()
+                .get(endpoint);
+    }
+
+    @And("Verify response should return bearer token")
+    public void verifyResponseShouldReturnBearerToken() {
+        response.then().body("token", Matchers.notNullValue());
+    }
+
+    @Given("I perform get request to {string} with following invalid {string} and {string}")
+    public void iPerformGetRequestToWithFollowingInvalidAnd(String endpoint, String username, String password) {
+        response = RestAssured.given()
+                .header("Content-type", "application/json")
+                .header("Authorization", username, password)
+                .when()
+                .get(endpoint);
+    }
+
+    @And("the response body contains the error message {string}")
+    public void theResponseBodyContainsTheErrorMessage(String expectedResponse) {
+        Assert.assertEquals(response.then().extract().body().jsonPath().get("message"), expectedResponse);
     }
 }
