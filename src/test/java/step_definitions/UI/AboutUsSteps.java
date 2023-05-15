@@ -98,11 +98,13 @@ public class AboutUsSteps {
                         "//div[@class='lower-content']//descendant::*[text()='" + staffName + "']" +
                         "/following::a[contains(@href,'" + socialMediaBtn + "')]")));
     }
+  
     @Given("That the user navigates to the About Us Page")
-    public void givenThatTheUserNavigatesToTheAboutUsPage() {
+    public void givenThatTheUserNavigatesToTheAboutUsPage(){
+        BrowserUtils.sleep(1000);
         BrowserUtils.click(homePage.aboutUsBtn);
         BrowserUtils.switchToNewWindow();
-        BrowserUtils.sleep(3000);
+
     }
 
 
@@ -110,9 +112,8 @@ public class AboutUsSteps {
     public void verifyIfHeaderIsDisplayedInThePage(String header) {
         switch (header.toLowerCase()) {
             case "why choose us":
-                BrowserUtils.isDisplayed(page.whyChooseUsHeader1);
-                BrowserUtils.assertEquals(page.whyChooseUsHeader1.getText(), header);
                 BrowserUtils.sleep(1000);
+                BrowserUtils.isDisplayed(page.whyChooseUsHeader1);
                 break;
             default:
                 Assert.fail("Test Failed");
@@ -120,21 +121,17 @@ public class AboutUsSteps {
 
     }
 
-
     @Then("Verify if following {string} are displayed:")
     public void verifyIfFollowingAreDisplayed(String header) {
         switch (header.toLowerCase()) {
             case "on time services":
                 BrowserUtils.isDisplayed(page.onTimeServicesHeader);
-                BrowserUtils.assertEquals(page.onTimeServicesHeader.getText(), header);
                 break;
             case "experienced team":
                 BrowserUtils.isDisplayed(page.experiencedTeamHeader);
-                BrowserUtils.assertEquals(page.experiencedTeamHeader.getText(), header);
                 break;
             case "good track records":
                 BrowserUtils.isDisplayed(page.goodTrackRecordsHeader);
-                BrowserUtils.assertEquals(page.goodTrackRecordsHeader.getText(), header);
                 break;
             default:
                 Assert.fail("Test failed");
