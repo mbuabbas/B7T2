@@ -121,7 +121,7 @@ public class AboutUsSteps {
 
     }
 
-    @Then("Verify if following {string} are displayed:")
+    @Then("Verify if following {string} are displayed")
     public void verifyIfFollowingAreDisplayed(String header) {
         switch (header.toLowerCase()) {
             case "on time services":
