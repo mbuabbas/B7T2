@@ -1,9 +1,24 @@
+@AboutUsScenarios
+Feature: About us scenarios
 
+  Background: Given that the user navigates to About Us Page
 
 Feature: AboutUs Page Scenarios
 
   Background:
     Given I open "About Us" page
+
+
+  @AD-32
+  Scenario Outline: There should be a section with 4 headers with description texts
+    Given That the user navigates to the About Us Page
+    And  Verify if following section with  "<headers>" with description text are displayed:
+    Examples:
+      | headers         |
+      | Evaluate Resume |
+      | Interview       |
+      | Screening       |
+      | Process Done    |
 
 
   @AD-29
@@ -12,10 +27,10 @@ Feature: AboutUs Page Scenarios
     And Verify if "Why Choose Us" header is displayed in the page
     Then Verify if following "<Headers>" are displayed
     Examples:
-      | Headers           |
-      | On Time Services  |
-      | Experienced Team  |
-      | Good Track Records  |
+      | Headers            |
+      | On Time Services   |
+      | Experienced Team   |
+      | Good Track Records |
 
   @AD-30 @AD-30a
   Scenario: Verify team header

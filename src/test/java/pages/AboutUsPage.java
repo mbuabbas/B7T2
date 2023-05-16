@@ -1,5 +1,5 @@
 package pages;
-
+import io.cucumber.java.zh_cn.假如;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -69,6 +69,21 @@ public class AboutUsPage {
     @FindBy(xpath = "(//li[@class='current'])[1]")
     public WebElement ourServicesPage;
 
+    @FindBy(xpath = "//h3[normalize-space()='Evaluate Resume']")
+    public WebElement evaluateResume;
+    @FindBy(xpath = "//h3[normalize-space()='Interview']")
+    public WebElement interview;
+    @FindBy(xpath = "//h3[normalize-space()='Screening']")
+    public WebElement screening;
+    @FindBy(xpath = "//h3[normalize-space()='Process Done']")
+    public WebElement processDone;
+    @FindBy(xpath = "//section[@class='working-process sp-two']//div[@class='container']//div[1]//div[1]//div[2]")
+    public WebElement evaluateResumeText;
+    @FindBy(xpath = "//div[contains(text(), 'Praising pain')]")
+    public WebElement interviewText;
+    @FindBy(xpath = "//section[@class='working-process sp-two']//div[3]//div[1]//div[2]")
+    public WebElement screeningText;
+    @FindBy(xpath = "//section[@class='working-process sp-two']//div[4]//div[1]//div[2]")
+    public WebElement processDoneText;
 }
-
 
