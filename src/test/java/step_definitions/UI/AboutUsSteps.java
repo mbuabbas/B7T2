@@ -32,6 +32,11 @@ public class AboutUsSteps {
                 BrowserUtils.waitForElementVisibility(homePage.aboutUsBtns.get(0));
                 BrowserUtils.click(homePage.aboutUsBtns.get(0));
                 break;
+            case "contact us":
+                BrowserUtils.waitForElementVisibility(homePage.contactUsBtns.get(0));
+                BrowserUtils.click(homePage.contactUsBtns.get(0));
+                BrowserUtils.sleep(3000);
+                break;
             default:
                 Assert.fail("Invalid Navigation button");
 
@@ -90,15 +95,15 @@ public class AboutUsSteps {
     @And("Verify {string} buttons under {string} picture are visible")
     public void verifyButtonsUnderPictureAreVisible(String socialMediaBtn, String staffName)
     {
-                BrowserUtils.isEnabledWithKeyUp(BrowserUtils.getDriver().findElement(By.xpath("" +
-                        "//div[@class='lower-content']//descendant::*[text()='" + staffName + "']" +
-                        "/following::a[contains(@href,'" + socialMediaBtn + "')]")));
+        BrowserUtils.isEnabledWithKeyUp(BrowserUtils.getDriver().findElement(By.xpath("" +
+                "//div[@class='lower-content']//descendant::*[text()='" + staffName + "']" +
+                "/following::a[contains(@href,'" + socialMediaBtn + "')]")));
 
-                BrowserUtils.isDisplayedWithPressKeyUp(BrowserUtils.getDriver().findElement(By.xpath("" +
-                        "//div[@class='lower-content']//descendant::*[text()='" + staffName + "']" +
-                        "/following::a[contains(@href,'" + socialMediaBtn + "')]")));
+        BrowserUtils.isDisplayedWithPressKeyUp(BrowserUtils.getDriver().findElement(By.xpath("" +
+                "//div[@class='lower-content']//descendant::*[text()='" + staffName + "']" +
+                "/following::a[contains(@href,'" + socialMediaBtn + "')]")));
     }
-  
+
     @Given("That the user navigates to the About Us Page")
     public void givenThatTheUserNavigatesToTheAboutUsPage(){
         BrowserUtils.sleep(1000);
@@ -221,7 +226,6 @@ public class AboutUsSteps {
 
     }
 }
-
 
 
 
