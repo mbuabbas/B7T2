@@ -11,15 +11,18 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import pages.AboutUsPage;
 import pages.HomePage;
+import pages.OurDivisionsPage;
 import utils.BrowserUtils;
 
 public class HomeSteps {
     HomePage page;
     AboutUsPage aboutUsPage;
+    OurDivisionsPage ourDivisionsPage;
 
     public HomeSteps() {
         page = new HomePage();
         aboutUsPage = new AboutUsPage();
+        ourDivisionsPage = new OurDivisionsPage();
     }
 
     @Then("Verify button {string} is displayed")
@@ -422,6 +425,28 @@ public class HomeSteps {
                 break;
             case "contact us":
                 BrowserUtils.isDisplayedWithNoMoveInToView(page.contactUsHeader);
+                break;
+            case "our divisions":
+                BrowserUtils.isDisplayedWithPressKeyUp(ourDivisionsPage.ourDivisionsHeader);
+                break;
+            case "finance division":
+            case "finance":
+                BrowserUtils.isDisplayedWithPressKeyUp(ourDivisionsPage.financeDivisionHeader);
+                break;
+            case "information technology division":
+            case "information technology":
+                BrowserUtils.isDisplayedWithPressKeyUp(ourDivisionsPage.iTHeader);
+                break;
+            case "healthcare division":
+            case "healthcare":
+                BrowserUtils.isDisplayedWithPressKeyUp(ourDivisionsPage.healthecareHeader);
+                break;
+            case "government projects":
+            case "government":
+                BrowserUtils.isDisplayedWithPressKeyUp(ourDivisionsPage.governmentHeader);
+                break;
+            case "others":
+                BrowserUtils.isDisplayedWithPressKeyUp(ourDivisionsPage.othersHeader);
                 break;
             default:
                 Assert.fail("Invalid header!");

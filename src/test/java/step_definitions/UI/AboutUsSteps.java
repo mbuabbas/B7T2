@@ -11,6 +11,7 @@ import org.openqa.selenium.interactions.Actions;
 import pages.AboutUsPage;
 import pages.HomePage;
 import pages.OurServicesPage;
+import pages.OurDivisionsPage;
 import utils.BrowserUtils;
 
 
@@ -21,11 +22,13 @@ public class AboutUsSteps {
     AboutUsPage page;
     HomePage homePage;
     private Actions actions;
+    OurDivisionsPage ourDivisionsPage;
 
     public AboutUsSteps() {
         ourServicesPage = new OurServicesPage();
         page = new AboutUsPage();
         homePage = new HomePage();
+        ourDivisionsPage = new OurDivisionsPage();
     }
 
     @Given("I open {string} page")
@@ -40,6 +43,15 @@ public class AboutUsSteps {
             case "our services":
                 BrowserUtils.waitForElementVisibility(homePage.servicesBtns.get(0));
                 BrowserUtils.click(homePage.servicesBtns.get(0));
+                break;
+            case "our divisions":
+                BrowserUtils.waitForElementVisibility(homePage.servicesBtns.get(0));
+                BrowserUtils.click(homePage.servicesBtns.get(0));
+                break;
+            case "contact us":
+                BrowserUtils.waitForElementVisibility(homePage.contactUsBtns.get(0));
+                BrowserUtils.click(homePage.contactUsBtns.get(0));
+                BrowserUtils.sleep(3000);
                 break;
             default:
                 Assert.fail("Invalid Navigation button");
@@ -99,15 +111,15 @@ public class AboutUsSteps {
     @And("Verify {string} buttons under {string} picture are visible")
     public void verifyButtonsUnderPictureAreVisible(String socialMediaBtn, String staffName)
     {
-                BrowserUtils.isEnabledWithKeyUp(BrowserUtils.getDriver().findElement(By.xpath("" +
-                        "//div[@class='lower-content']//descendant::*[text()='" + staffName + "']" +
-                        "/following::a[contains(@href,'" + socialMediaBtn + "')]")));
+        BrowserUtils.isEnabledWithKeyUp(BrowserUtils.getDriver().findElement(By.xpath("" +
+                "//div[@class='lower-content']//descendant::*[text()='" + staffName + "']" +
+                "/following::a[contains(@href,'" + socialMediaBtn + "')]")));
 
-                BrowserUtils.isDisplayedWithPressKeyUp(BrowserUtils.getDriver().findElement(By.xpath("" +
-                        "//div[@class='lower-content']//descendant::*[text()='" + staffName + "']" +
-                        "/following::a[contains(@href,'" + socialMediaBtn + "')]")));
+        BrowserUtils.isDisplayedWithPressKeyUp(BrowserUtils.getDriver().findElement(By.xpath("" +
+                "//div[@class='lower-content']//descendant::*[text()='" + staffName + "']" +
+                "/following::a[contains(@href,'" + socialMediaBtn + "')]")));
     }
-  
+
     @Given("That the user navigates to the About Us Page")
     public void givenThatTheUserNavigatesToTheAboutUsPage(){
         BrowserUtils.sleep(1000);
@@ -217,16 +229,19 @@ public class AboutUsSteps {
                 BrowserUtils.switchToNewWindow();
                 break;
             case "finance":
-                BrowserUtils.clickWithJs(ourServicesPage.divisionButtons.get(0));
+                BrowserUtils.clickWithPressUpKey(ourDivisionsPage.financeLinkBtn);
                 break;
             case "information technology":
-                BrowserUtils.clickWithJs(ourServicesPage.divisionButtons.get(1));
+                BrowserUtils.clickWithPressUpKey(ourDivisionsPage.infoTechLinkBtn);
                 break;
             case "healthcare":
-                BrowserUtils.clickWithJs(ourServicesPage.divisionButtons.get(2));
+                BrowserUtils.clickWithPressUpKey(ourDivisionsPage.healthcareLinkBtn);
                 break;
             case "government projects":
-                BrowserUtils.clickWithJs(ourServicesPage.divisionButtons.get(3));
+                BrowserUtils.clickWithPressUpKey(ourDivisionsPage.govProjLinkBtn);
+                break;
+            case "others":
+                BrowserUtils.clickWithPressUpKey(ourDivisionsPage.othersLinkBtn);
                 break;
             default:
                 Assert.fail("Test Failed");
@@ -242,7 +257,6 @@ public class AboutUsSteps {
 
     }
 }
-
 
 
 
