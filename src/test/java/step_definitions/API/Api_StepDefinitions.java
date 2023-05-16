@@ -121,7 +121,7 @@ public class Api_StepDefinitions {
         RequestSpecification request = RestAssured.given();
         response = request.header("Authorization", apiKey)
                 .when()
-                .delete(endpoint, studentId)
+                .delete(endpoint + "?_id=" + studentId)
                 .then()
                 .log().all()
                 .extract().response();
@@ -247,5 +247,19 @@ public class Api_StepDefinitions {
         Assert.assertEquals(response.jsonPath().getString("name"), "Paul");
         Assert.assertEquals(response.jsonPath().getString("duration"), "7 months");
 
+    }
+
+    @Given("the API endpoint {string}")
+    public void theAPIEndpoint(String endpoint) {
+        this.endpoint = endpoint;
+    }
+
+    @When("I send a DELETE request with the API key and student ID")
+    public void iSendADELETERequestWithTheAPIKeyAndStudentID() {
+        response = RestAssured
+                .given()
+                .header("Authorization", apiKey)
+                .when()
+                .delete(endpoint + "?_id=" + studentId);
     }
 }
