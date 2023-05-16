@@ -163,6 +163,7 @@ public class HomeSteps {
         BrowserUtils.isDisplayed(page.adressInfo);
 
     }
+
     @Then("Verify contact info: {string} is displayed")
     public void verifyContactInfoIsDisplayed(String quickContact) {
 
@@ -171,7 +172,7 @@ public class HomeSteps {
 
     @When("I click on social media button {string}")
     public void iClickOnSocialMediaButton(String socialMediaBtn) {
-        switch (socialMediaBtn.toLowerCase()){
+        switch (socialMediaBtn.toLowerCase()) {
             case "facebook":
                 BrowserUtils.click(page.facebookBtn);
                 BrowserUtils.switchToNewWindow();
@@ -197,9 +198,10 @@ public class HomeSteps {
     @Then("Verify each button takes user to corresponding page with {string}")
     public void verifyEachButtonTakesUserToCorrespondingPageWith(String URL) {
         BrowserUtils.switchToNewWindow();
-        BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(),URL);
+        BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(), URL);
 
     }
+
     @Then("Verify {string} is displayed")
     public void verifyIsDisplayed(String footerInfo) {
         BrowserUtils.isDisplayed(page.footerInfo);
@@ -213,8 +215,7 @@ public class HomeSteps {
 
     @When("I click a {string}")
     public void iClickA(String btnName) {
-        switch (btnName.toLowerCase())
-        {
+        switch (btnName.toLowerCase()) {
             case "home":
                 BrowserUtils.click(page.footerHomeLink);
                 break;
@@ -249,26 +250,24 @@ public class HomeSteps {
     }
 
 
-
-
     @Then("Verify {string} displayed")
     public void verifyDisplayed(String item) {
         switch (item) {
             case "Leadership Development":
-                BrowserUtils.assertEquals(BrowserUtils.getText(page.leadershipDev),item);
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.leadershipDev), item);
                 break;
             case "Capability Building":
-                BrowserUtils.assertEquals(BrowserUtils.getText(page.capabilityBuilding),item);
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.capabilityBuilding), item);
                 break;
             case "Rewards & Benefits":
-                BrowserUtils.assertEquals(BrowserUtils.getText(page.rewardsBenefits),item);
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.rewardsBenefits), item);
                 break;
             case "Employee & Employer Relations":
                 String employeeItem = "Employee & Employer\nRelations";
-                BrowserUtils.assertEquals(BrowserUtils.getText(page.employeeEmployer),employeeItem);
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.employeeEmployer), employeeItem);
                 break;
             case "Excellent Customer Service":
-                BrowserUtils.assertEquals(BrowserUtils.getText(page.customerService),item);
+                BrowserUtils.assertEquals(BrowserUtils.getText(page.customerService), item);
                 break;
             default:
                 Assert.fail("Invalid text");
@@ -277,35 +276,28 @@ public class HomeSteps {
 
 
     @Then("Verify {string} is listed in line")
-    public void verifyIsListedInLine(String companyName)
-    {
+    public void verifyIsListedInLine(String companyName) {
         boolean isThere = false;
         int numInList = 0;
-        for (int i = 0; i < page.companyNamesInLine.size(); i++)
-        {
+        for (int i = 0; i < page.companyNamesInLine.size(); i++) {
             System.out.println(page.companyNamesInLine.get(i).getAttribute("alt"));
             System.out.println(companyName);
-            if (page.companyNamesInLine.get(i).getAttribute("alt").equals(companyName))
-            {
+            if (page.companyNamesInLine.get(i).getAttribute("alt").equals(companyName)) {
                 isThere = true;
                 numInList = i;
                 break;
             }
         }
         BrowserUtils.waitForElementVisibility(page.companyNamesInLine.get(numInList));
-        if (isThere)
-        {
-            BrowserUtils.assertEquals(page.companyNamesInLine.get(numInList).getAttribute("alt"),companyName);
+        if (isThere) {
+            BrowserUtils.assertEquals(page.companyNamesInLine.get(numInList).getAttribute("alt"), companyName);
         }
     }
 
     @And("Verify {string} logo is displayed")
-    public void verifyLogoIsDisplayed(String companyName)
-    {
-        for (int i = 0; i < page.companyNamesInLine.size(); i++)
-        {
-            if(page.companyNamesInLine.get(i).getAttribute("alt").equals(companyName))
-            {
+    public void verifyLogoIsDisplayed(String companyName) {
+        for (int i = 0; i < page.companyNamesInLine.size(); i++) {
+            if (page.companyNamesInLine.get(i).getAttribute("alt").equals(companyName)) {
                 BrowserUtils.isDisplayed(page.companyNamesInLine.get(i));
                 break;
             }
@@ -320,13 +312,12 @@ public class HomeSteps {
 
     @And("Verify section part of the Home Page displays a text {string}")
     public void verifySectionPartOfTheHomePageDisplaysAText(String parallaxText) {
-             BrowserUtils.sleep(3000);
-             BrowserUtils.waitForElementVisibility(page.parallaxText);
+        BrowserUtils.sleep(3000);
+        BrowserUtils.waitForElementVisibility(page.parallaxText);
 
-             BrowserUtils.assertTrue(page.parallaxText.isDisplayed());
+        BrowserUtils.assertTrue(page.parallaxText.isDisplayed());
 
-        }
-
+    }
 
 
     @Then("Verify if section part of the Home Page refreshes and change display text to {string}")
@@ -337,7 +328,7 @@ public class HomeSteps {
     }
 
     @Then("Verify if button leads to {string} end point page")
-    public void verifyIfButtonLeadsToEndPointPage(String url)   {
+    public void verifyIfButtonLeadsToEndPointPage(String url) {
         switch (url.toLowerCase()) {
             case "services":
                 BrowserUtils.sleep(3000);
@@ -353,8 +344,8 @@ public class HomeSteps {
     }
 
     @And("Verify {string} button in the main header is visible")
-    public void verifyButtonInTheMainHeaderIsVisible(String mainHeaderBtn)   {
-        switch (mainHeaderBtn.toLowerCase()){
+    public void verifyButtonInTheMainHeaderIsVisible(String mainHeaderBtn) {
+        switch (mainHeaderBtn.toLowerCase()) {
             case "join us":
                 BrowserUtils.sleep(3000);
                 BrowserUtils.assertTrue(page.mainHeaderJoinUsBtn.isDisplayed());
@@ -366,7 +357,7 @@ public class HomeSteps {
 
     @And("Click on {string} button in the main header")
     public void clickOnButtonInTheMainHeader(String mainHeaderBtn) {
-        switch (mainHeaderBtn.toLowerCase()){
+        switch (mainHeaderBtn.toLowerCase()) {
             case "join us":
                 BrowserUtils.click(page.mainHeaderJoinUsBtn);
                 break;
@@ -400,11 +391,9 @@ public class HomeSteps {
     }
 
     @Then("Verify header of the page is {string}")
-    public void verifyHeaderOfThePageIs(String header)
-    {
+    public void verifyHeaderOfThePageIs(String header) {
         BrowserUtils.sleep(3000);
-        switch(header.toLowerCase())
-        {
+        switch (header.toLowerCase()) {
             case "home":
                 BrowserUtils.isDisplayedWithNoMoveInToView(page.homeFirstHeader);
                 break;
@@ -429,10 +418,8 @@ public class HomeSteps {
     }
 
     @Then("Verify {string} text is displayed")
-    public void verifyTextIsDisplayed(String text)
-    {
-        switch(text.toLowerCase())
-        {
+    public void verifyTextIsDisplayed(String text) {
+        switch (text.toLowerCase()) {
             case "welcome to advance systems llc.":
                 BrowserUtils.assertEquals(page.centerHeaderText.getText(), text);
                 BrowserUtils.isDisplayedWithPressKeyUp(page.centerHeaderText);
