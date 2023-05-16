@@ -156,7 +156,6 @@ public class BrowserUtils {
         sleep(500);
         pressKeyUp5Times();
         highlightElement(element);
-        sleep(1000);
         element.click();
     }
     public static void assertEquals(String actual, String expected){
@@ -191,7 +190,7 @@ public class BrowserUtils {
         waitForElementVisibility(element);
         moveIntoView(element);
         pressKeyUp5Times();
-        sleep(1000);
+        sleep(500);
         highlightElement(element);
         Assert.assertTrue(element.isDisplayed());
     }

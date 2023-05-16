@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.AboutUsPage;
 import pages.HomePage;
+import pages.OurDivisionsPage;
 import utils.BrowserUtils;
 
 
@@ -17,10 +18,12 @@ import utils.BrowserUtils;
 public class AboutUsSteps {
     AboutUsPage page;
     HomePage homePage;
+    OurDivisionsPage ourDivisionsPage;
 
     public AboutUsSteps() {
         page = new AboutUsPage();
         homePage = new HomePage();
+        ourDivisionsPage = new OurDivisionsPage();
     }
 
     @Given("I open {string} page")
@@ -32,10 +35,16 @@ public class AboutUsSteps {
                 BrowserUtils.waitForElementVisibility(homePage.aboutUsBtns.get(0));
                 BrowserUtils.click(homePage.aboutUsBtns.get(0));
                 break;
+
+            case "our divisions":
+                BrowserUtils.waitForElementVisibility(homePage.servicesBtns.get(0));
+                BrowserUtils.click(homePage.servicesBtns.get(0));
+
             case "contact us":
                 BrowserUtils.waitForElementVisibility(homePage.contactUsBtns.get(0));
                 BrowserUtils.click(homePage.contactUsBtns.get(0));
                 BrowserUtils.sleep(3000);
+
                 break;
             default:
                 Assert.fail("Invalid Navigation button");
@@ -211,6 +220,21 @@ public class AboutUsSteps {
                 BrowserUtils.sleep(4000);
                 BrowserUtils.click(page.ourServicesBtn);
                 BrowserUtils.switchToNewWindow();
+                break;
+            case "finance":
+                BrowserUtils.clickWithPressUpKey(ourDivisionsPage.financeLinkBtn);
+                break;
+            case "information technology":
+                BrowserUtils.clickWithPressUpKey(ourDivisionsPage.infoTechLinkBtn);
+                break;
+            case "healthcare":
+                BrowserUtils.clickWithPressUpKey(ourDivisionsPage.healthcareLinkBtn);
+                break;
+            case "government projects":
+                BrowserUtils.clickWithPressUpKey(ourDivisionsPage.govProjLinkBtn);
+                break;
+            case "others":
+                BrowserUtils.clickWithPressUpKey(ourDivisionsPage.othersLinkBtn);
                 break;
             default:
                 Assert.fail("Test Failed");
