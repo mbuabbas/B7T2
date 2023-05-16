@@ -14,7 +14,7 @@ import pages.OurServicesPage;
 import pages.OurDivisionsPage;
 import utils.BrowserUtils;
 
-
+import java.util.List;
 
 
 public class AboutUsSteps {
@@ -32,10 +32,8 @@ public class AboutUsSteps {
     }
 
     @Given("I open {string} page")
-    public void iOpenPage(String navBtn)
-    {
-        switch(navBtn.toLowerCase())
-        {
+    public void iOpenPage(String navBtn) {
+        switch (navBtn.toLowerCase()) {
             case "about us":
                 BrowserUtils.waitForElementVisibility(homePage.aboutUsBtns.get(0));
                 BrowserUtils.click(homePage.aboutUsBtns.get(0));
@@ -60,10 +58,8 @@ public class AboutUsSteps {
     }
 
     @And("Verify that picture of {string} is displayed")
-    public void verifyThatPictureOfIsDisplayed(String staffName)
-    {
-        switch(staffName.toLowerCase())
-        {
+    public void verifyThatPictureOfIsDisplayed(String staffName) {
+        switch (staffName.toLowerCase()) {
             case "richard antony":
                 BrowserUtils.isDisplayedWithPressKeyUp(page.team1Photo);
                 break;
@@ -83,24 +79,22 @@ public class AboutUsSteps {
     }
 
     @And("Verify that {string} title is displayed")
-    public void verifyThatTitleIsDisplayed(String title)
-    {
-        switch (title.toLowerCase())
-        {
+    public void verifyThatTitleIsDisplayed(String title) {
+        switch (title.toLowerCase()) {
             case "founder":
-                BrowserUtils.assertEquals(page.founderTitle.getText(),title);
+                BrowserUtils.assertEquals(page.founderTitle.getText(), title);
                 BrowserUtils.isDisplayedWithPressKeyUp(page.founderTitle);
                 break;
             case "president":
-                BrowserUtils.assertEquals(page.presientTitle.getText(),title);
+                BrowserUtils.assertEquals(page.presientTitle.getText(), title);
                 BrowserUtils.isDisplayedWithPressKeyUp(page.presientTitle);
                 break;
             case "hr manager":
-                BrowserUtils.assertEquals(page.hRManagerTitle.getText(),title);
+                BrowserUtils.assertEquals(page.hRManagerTitle.getText(), title);
                 BrowserUtils.isDisplayedWithPressKeyUp(page.hRManagerTitle);
                 break;
             case "executive":
-                BrowserUtils.assertEquals(page.executiveTitle.getText(),title);
+                BrowserUtils.assertEquals(page.executiveTitle.getText(), title);
                 BrowserUtils.isDisplayedWithPressKeyUp(page.executiveTitle);
                 break;
             default:
@@ -109,8 +103,7 @@ public class AboutUsSteps {
     }
 
     @And("Verify {string} buttons under {string} picture are visible")
-    public void verifyButtonsUnderPictureAreVisible(String socialMediaBtn, String staffName)
-    {
+    public void verifyButtonsUnderPictureAreVisible(String socialMediaBtn, String staffName) {
         BrowserUtils.isEnabledWithKeyUp(BrowserUtils.getDriver().findElement(By.xpath("" +
                 "//div[@class='lower-content']//descendant::*[text()='" + staffName + "']" +
                 "/following::a[contains(@href,'" + socialMediaBtn + "')]")));
@@ -121,7 +114,7 @@ public class AboutUsSteps {
     }
 
     @Given("That the user navigates to the About Us Page")
-    public void givenThatTheUserNavigatesToTheAboutUsPage(){
+    public void givenThatTheUserNavigatesToTheAboutUsPage() {
         BrowserUtils.sleep(1000);
         BrowserUtils.click(homePage.aboutUsBtn);
         BrowserUtils.switchToNewWindow();
@@ -161,44 +154,41 @@ public class AboutUsSteps {
 
 
     @When("I click on social media button {string} under {string} picture")
-    public void iClickOnSocialMediaButtonUnderPicture(String socialMediaBtn, String staffName)
-    {
+    public void iClickOnSocialMediaButtonUnderPicture(String socialMediaBtn, String staffName) {
         BrowserUtils.clickWithPressUpKey(BrowserUtils.getDriver().findElement(By.xpath("" +
                 "//div[@class='lower-content']//descendant::*[text()='" + staffName + "']" +
                 "/following::a[contains(@href,'" + socialMediaBtn + "')]")));
     }
 
     @Then("Verify that social media button {string} take to to corresponding page")
-    public void verifyThatSocialMediaButtonTakeToToCorrespondingPage(String socialMediaName)
-    {
-        switch (socialMediaName.toLowerCase())
-        {
+    public void verifyThatSocialMediaButtonTakeToToCorrespondingPage(String socialMediaName) {
+        switch (socialMediaName.toLowerCase()) {
             case "facebook":
                 BrowserUtils.isDisplayed(page.facebookPage);
                 BrowserUtils.sleep(500);
                 BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), "Facebook - log in or sign up");
-                BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(),"https://www.facebook.com/");
+                BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(), "https://www.facebook.com/");
 
                 break;
             case "twitter":
                 BrowserUtils.isDisplayed(page.twitterPage);
                 BrowserUtils.sleep(500);
                 BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), "Explore / Twitter");
-                BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(),"https://twitter.com/");
+                BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(), "https://twitter.com/");
 
                 break;
             case "skype":
                 BrowserUtils.isDisplayed(page.skypePageLogo);
                 BrowserUtils.sleep(500);
                 BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), "Skype | Stay connected with free video calls worldwide");
-                BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(),"https://www.skype.com/en/");
+                BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(), "https://www.skype.com/en/");
                 break;
             case "linkedin":
                 BrowserUtils.sleep(2000);
                 BrowserUtils.isDisplayed(page.linkedInPageLogo);
                 BrowserUtils.sleep(500);
                 BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), "LinkedIn: Log In or Sign Up");
-                BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(),"https://www.linkedin.com/");
+                BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(), "https://www.linkedin.com/");
                 break;
             default:
                 Assert.fail("Invalid Social Media page!");
@@ -206,8 +196,7 @@ public class AboutUsSteps {
     }
 
     @When("I navigate back to previous page")
-    public void iNavigateBackToPreviousPage()
-    {
+    public void iNavigateBackToPreviousPage() {
         BrowserUtils.getDriver().navigate().back();
     }
 
@@ -222,7 +211,7 @@ public class AboutUsSteps {
 
     @When("I click on {string} button")
     public void iClickOnButton(String ourServicesBtn) {
-        switch (ourServicesBtn.toLowerCase()){
+        switch (ourServicesBtn.toLowerCase()) {
             case "our services":
                 BrowserUtils.sleep(4000);
                 BrowserUtils.click(page.ourServicesBtn);
@@ -256,7 +245,35 @@ public class AboutUsSteps {
 
 
     }
-}
 
+
+    @And("Verify if following section with  {string} with description text are displayed:")
+    public void verifyIfFollowingSectionWithWithDescriptionTextAreDisplayed(String header) {
+        String actualHeader = "";
+        String description = "";
+        switch (header.toLowerCase()) {
+            case "evaluate resume":
+                BrowserUtils.waitForElementVisibility(page.evaluateResumeText);
+                BrowserUtils.waitForElementVisibility(page.evaluateResume);
+                description = BrowserUtils.getText(page.evaluateResumeText);
+                actualHeader = BrowserUtils.getText(page.evaluateResume);
+                break;
+            case "interview":
+                description = BrowserUtils.getText(page.interviewText);
+                actualHeader = BrowserUtils.getText(page.interview);
+                break;
+            case "screening":
+                description = BrowserUtils.getText(page.screeningText);
+                actualHeader = BrowserUtils.getText(page.screening);
+                break;
+            case "process done":
+                description = BrowserUtils.getText(page.processDoneText);
+                actualHeader = BrowserUtils.getText(page.processDone);
+                break;
+        }
+        BrowserUtils.assertEquals(actualHeader,header);
+        BrowserUtils.assertTrue(!description.equals(""));
+    }
+}
 
 
