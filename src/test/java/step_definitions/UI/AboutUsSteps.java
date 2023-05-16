@@ -7,18 +7,23 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import pages.AboutUsPage;
 import pages.HomePage;
+import pages.OurServicesPage;
 import utils.BrowserUtils;
 
 
 
 
 public class AboutUsSteps {
+    OurServicesPage ourServicesPage;
     AboutUsPage page;
     HomePage homePage;
+    private Actions actions;
 
     public AboutUsSteps() {
+        ourServicesPage = new OurServicesPage();
         page = new AboutUsPage();
         homePage = new HomePage();
     }
@@ -31,6 +36,10 @@ public class AboutUsSteps {
             case "about us":
                 BrowserUtils.waitForElementVisibility(homePage.aboutUsBtns.get(0));
                 BrowserUtils.click(homePage.aboutUsBtns.get(0));
+                break;
+            case "our services":
+                BrowserUtils.waitForElementVisibility(homePage.servicesBtns.get(0));
+                BrowserUtils.click(homePage.servicesBtns.get(0));
                 break;
             default:
                 Assert.fail("Invalid Navigation button");
@@ -206,6 +215,18 @@ public class AboutUsSteps {
                 BrowserUtils.sleep(4000);
                 BrowserUtils.click(page.ourServicesBtn);
                 BrowserUtils.switchToNewWindow();
+                break;
+            case "finance":
+                BrowserUtils.clickWithJs(ourServicesPage.divisionButtons.get(0));
+                break;
+            case "information technology":
+                BrowserUtils.clickWithJs(ourServicesPage.divisionButtons.get(1));
+                break;
+            case "healthcare":
+                BrowserUtils.clickWithJs(ourServicesPage.divisionButtons.get(2));
+                break;
+            case "government projects":
+                BrowserUtils.clickWithJs(ourServicesPage.divisionButtons.get(3));
                 break;
             default:
                 Assert.fail("Test Failed");
