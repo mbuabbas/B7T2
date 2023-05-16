@@ -32,6 +32,10 @@ public class AboutUsSteps {
                 BrowserUtils.waitForElementVisibility(homePage.aboutUsBtns.get(0));
                 BrowserUtils.click(homePage.aboutUsBtns.get(0));
                 break;
+            case "our divisions":
+                BrowserUtils.waitForElementVisibility(homePage.servicesBtns.get(0));
+                BrowserUtils.click(homePage.servicesBtns.get(0));
+                break;
             default:
                 Assert.fail("Invalid Navigation button");
 
