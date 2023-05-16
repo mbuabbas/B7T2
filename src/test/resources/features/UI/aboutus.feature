@@ -1,49 +1,36 @@
-<<<<<<< HEAD
 @AboutUsScenarios
 Feature: About us scenarios
 
   Background: Given that the user navigates to About Us Page
-=======
->>>>>>> 87059ef850e1ea8667ae05e7cdc41422d9a573c9
-
 
 Feature: AboutUs Page Scenarios
 
   Background:
     Given I open "About Us" page
-    
-    
-  @AD-29
-<<<<<<< HEAD
-  Scenario: There should be a section header "Why Choose Us" in the about us page containing 3 sub headers
-    Given That the user navigates to the About Us Page
-    And Verify if "Why Choose Us" header is displayed in the page
-    Then Verify if following "<Headers>" are displayed:
-      | Headers            |
-      | On Time Services   |
-      | Experienced Team   |
-      | Good Track Records |
+
 
   @AD-32
-  Scenario: There should be a section with 4 headers with description texts
+  Scenario Outline: There should be a section with 4 headers with description texts
     Given That the user navigates to the About Us Page
-    And  Verify if following section with  "<Headers>" with description text are displayed:
-
+    And  Verify if following section with  "<headers>" with description text are displayed:
+    Examples:
+      | headers         |
       | Evaluate Resume |
       | Interview       |
       | Screening       |
       | Process Done    |
-    Then Verify if {string} text is displayed under "<Headers>"
-=======
-    Scenario Outline: There should be a section header "Why Choose Us" in the about us page containing 3 sub headers
-      Given That the user navigates to the About Us Page
-      And Verify if "Why Choose Us" header is displayed in the page
-      Then Verify if following "<Headers>" are displayed
-      Examples:
-      | Headers           |
-      | On Time Services  |
-      | Experienced Team  |
-      | Good Track Records  |
+
+
+  @AD-29
+  Scenario Outline: There should be a section header "Why Choose Us" in the about us page containing 3 sub headers
+    Given That the user navigates to the About Us Page
+    And Verify if "Why Choose Us" header is displayed in the page
+    Then Verify if following "<Headers>" are displayed
+    Examples:
+      | Headers            |
+      | On Time Services   |
+      | Experienced Team   |
+      | Good Track Records |
 
   @AD-30 @AD-30a
   Scenario: Verify team header
@@ -102,5 +89,3 @@ Feature: AboutUs Page Scenarios
     And Verify Under Expert section a header text "We are Recruitment Experts" is displayed
     When I click on "Our Services" button
     Then Verify "Our Services" button takes the user to the Services page
->>>>>>> 87059ef850e1ea8667ae05e7cdc41422d9a573c9
-

@@ -9,14 +9,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import pages.AboutUsPage;
 import pages.HomePage;
+import pages.OurDivisionsPage;
 import utils.BrowserUtils;
 
 public class HomeSteps {
     HomePage page;
+    AboutUsPage aboutUsPage;
+    OurDivisionsPage ourDivisionsPage;
 
     public HomeSteps() {
         page = new HomePage();
+        aboutUsPage = new AboutUsPage();
+        ourDivisionsPage = new OurDivisionsPage();
     }
 
     @Then("Verify button {string} is displayed")
@@ -254,7 +260,6 @@ public class HomeSteps {
             case "Leadership Development":
                 BrowserUtils.assertEquals(BrowserUtils.getText(page.leadershipDev),item);
                 break;
-
             case "Capability Building":
                 BrowserUtils.assertEquals(BrowserUtils.getText(page.capabilityBuilding),item);
                 break;
@@ -268,8 +273,8 @@ public class HomeSteps {
             case "Excellent Customer Service":
                 BrowserUtils.assertEquals(BrowserUtils.getText(page.customerService),item);
                 break;
-            //default:
-                //Assert.fail("Invalid text");
+            default:
+                Assert.fail("Invalid text");
         }
     }
 
@@ -421,6 +426,28 @@ public class HomeSteps {
             case "contact us":
                 BrowserUtils.isDisplayedWithNoMoveInToView(page.contactUsHeader);
                 break;
+            case "our divisions":
+                BrowserUtils.isDisplayedWithPressKeyUp(ourDivisionsPage.ourDivisionsHeader);
+                break;
+            case "finance division":
+            case "finance":
+                BrowserUtils.isDisplayedWithPressKeyUp(ourDivisionsPage.financeDivisionHeader);
+                break;
+            case "information technology division":
+            case "information technology":
+                BrowserUtils.isDisplayedWithPressKeyUp(ourDivisionsPage.iTHeader);
+                break;
+            case "healthcare division":
+            case "healthcare":
+                BrowserUtils.isDisplayedWithPressKeyUp(ourDivisionsPage.healthecareHeader);
+                break;
+            case "government projects":
+            case "government":
+                BrowserUtils.isDisplayedWithPressKeyUp(ourDivisionsPage.governmentHeader);
+                break;
+            case "others":
+                BrowserUtils.isDisplayedWithPressKeyUp(ourDivisionsPage.othersHeader);
+                break;
             default:
                 Assert.fail("Invalid header!");
         }
@@ -433,28 +460,40 @@ public class HomeSteps {
         {
             case "welcome to advance systems llc.":
                 BrowserUtils.assertEquals(page.centerHeaderText.getText(), text);
-                BrowserUtils.moveIntoView(page.centerHeaderText);
-                BrowserUtils.pressKeyUp5Times();
-                BrowserUtils.sleep(1000);
-                BrowserUtils.isDisplayedWithNoMoveInToView(page.centerHeaderText);
+                BrowserUtils.isDisplayedWithPressKeyUp(page.centerHeaderText);
                 break;
             case "our mission is simple, deliver very honest recruitment services to every customer.":
                 BrowserUtils.assertEquals(page.centerSecondaryHeader.getText(), text);
-                BrowserUtils.moveIntoView(page.centerSecondaryHeader);
-                BrowserUtils.pressKeyUp5Times();
-                BrowserUtils.sleep(1000);
-                BrowserUtils.isDisplayedWithNoMoveInToView(page.centerSecondaryHeader);
+                BrowserUtils.isDisplayedWithPressKeyUp(page.centerSecondaryHeader);
                 break;
             case "description":
                 BrowserUtils.assertTrue(!page.descriptionText.getText().isEmpty());
-                BrowserUtils.moveIntoView(page.descriptionText);
-                BrowserUtils.pressKeyUp5Times();
-                BrowserUtils.sleep(1000);
-                BrowserUtils.isDisplayedWithNoMoveInToView(page.descriptionText);
+                BrowserUtils.isDisplayedWithPressKeyUp(page.descriptionText);
+                break;
+            case "meet our experts":
+                BrowserUtils.assertEquals(aboutUsPage.meetOurExpertHeader.getText(), text);
+                BrowserUtils.isDisplayedWithPressKeyUp(aboutUsPage.meetOurExpertHeader);
+                break;
+            case "richard quote":
+                BrowserUtils.assertTrue(!aboutUsPage.richardQuote.getText().isEmpty());
+                BrowserUtils.isDisplayedWithPressKeyUp(aboutUsPage.richardQuote);
+                break;
+            case "charz quote":
+                BrowserUtils.assertTrue(!aboutUsPage.charzQuote.getText().isEmpty());
+                BrowserUtils.isDisplayedWithPressKeyUp(aboutUsPage.charzQuote);
+                break;
+            case "eliot quote":
+                BrowserUtils.assertTrue(!aboutUsPage.eliotQuote.getText().isEmpty());
+                BrowserUtils.isDisplayedWithPressKeyUp(aboutUsPage.eliotQuote);
+                break;
+            case "daren quote":
+                BrowserUtils.assertTrue(!aboutUsPage.darenQuote.getText().isEmpty());
+                BrowserUtils.isDisplayedWithPressKeyUp(aboutUsPage.darenQuote);
                 break;
             default:
                 Assert.fail("Invalid text!");
 
         }
     }
+
 }
