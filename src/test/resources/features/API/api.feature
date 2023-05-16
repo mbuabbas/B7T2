@@ -47,19 +47,24 @@ Feature: practice api
 
 
   @AD-25
-    Scenario: Delete existing student in database
-      Given The API key is "d03e989018msh7f4691c614e87a9p1a8181j"
-      And The student ID is "5f6f5a4f88158f0017c3fff2"
-      When The delete request is sent to "/api/school/resources/students/{studentId}"
-      And the response status code is 200
-
-
+  Scenario: Delete existing student in database
+    Given The API key is "d03e989018msh7f4691c614e87a9p1a8181j"
+    And The student ID is "5f6f5a4f88158f0017c3fff2"
+    When The delete request is sent to "/api/school/resources/students/{studentId}"
+    And the response status code is 200
 
 
   @AD-21
-  Scenario: Verify option to add new course to database
-    Given I perform get request to "devcourse" endpoint
-    Then Verify response status code is 200
+  Scenario Outline: Verify option to add new course to database
+    Given the "Dev" course endpoint is "https://tla-school-api.herokuapp.com/api/school/programs/devcourse"
+    When I send a POST request with body "<name>", "<duration>"
+    Then the response status code is 200
+    And the response body contains the following fields "<name>", "<duration>"
+    When I send a DELETE request to the SDET course with "<name>"
+    Examples:
+      | name        | duration |
+      | PaulP Course | 7 Months |
+
 
   @AD-23
   Scenario: Add new student
@@ -102,4 +107,5 @@ Feature: practice api
       | Suranchiyev        |
       | 7                  |
       | uransura@gmail.com |
+
 

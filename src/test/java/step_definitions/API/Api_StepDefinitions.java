@@ -128,8 +128,7 @@ public class Api_StepDefinitions {
 
 
     @Given("I perform get request to {string} endpoint")
-    public void iPerformGetRequestToEndpoint(String endpoint)
-    {
+    public void iPerformGetRequestToEndpoint(String endpoint) {
         RestAssured.baseURI = "https://tla-school-api.herokuapp.com/api/school/programs/";
 
         Response response = RestAssured.given()
@@ -147,6 +146,7 @@ public class Api_StepDefinitions {
     public void verifyResponseStatusCodeIs(int code) {
         Assert.assertEquals(code, response.statusCode());
     }
+
     @Given("I send a POST request to {string} with body:")
     public void iSendAPOSTRequestToWithBody(String endpoint, Map<String, String> inputBody) {
         CreateProjectPojos project = new CreateProjectPojos();
@@ -191,7 +191,7 @@ public class Api_StepDefinitions {
                 .and()
                 .body(project)
                 .when()
-                .put(endpoint  + "/" + studentId)
+                .put(endpoint + "/" + studentId)
                 .then().
                 log().all()
                 .extract().response();
@@ -199,8 +199,7 @@ public class Api_StepDefinitions {
     }
 
     @Given("I perform post request to {string} endpoint")
-    public void iPerformPostRequestToEndpoint(String path)
-    {
+    public void iPerformPostRequestToEndpoint(String path) {
         String jsonPayload = "{\"name\":\"Paul\",\"duration\":\" 7 month\"}";
         response = RestAssured.given()
                 .and()
@@ -214,9 +213,8 @@ public class Api_StepDefinitions {
                 .response();
         System.out.println(response.prettyPeek());
         System.out.println(response.jsonPath().getString("name"));
-        Assert.assertEquals(response.jsonPath().getString("name"),"Paul");
+        Assert.assertEquals(response.jsonPath().getString("name"), "Paul");
         Assert.assertEquals(response.jsonPath().getString("duration"), "7 months");
 
     }
-
 }
