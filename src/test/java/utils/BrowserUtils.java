@@ -156,7 +156,6 @@ public class BrowserUtils {
         sleep(500);
         pressKeyUp5Times();
         highlightElement(element);
-        sleep(1000);
         element.click();
     }
     public static void assertEquals(String actual, String expected){
@@ -191,7 +190,7 @@ public class BrowserUtils {
         waitForElementVisibility(element);
         moveIntoView(element);
         pressKeyUp5Times();
-        sleep(1000);
+        sleep(500);
         highlightElement(element);
         Assert.assertTrue(element.isDisplayed());
     }
@@ -245,6 +244,13 @@ public class BrowserUtils {
         action.sendKeys(Keys.ARROW_UP).perform();
         action.sendKeys(Keys.ARROW_UP).perform();
         action.sendKeys(Keys.ARROW_UP).perform();
+
+    }
+    // Click the element using JavaScript
+    public static void clickWithJs(WebElement element){
+        moveIntoView(element);
+        highlightElement(element);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
 
     }
 }
