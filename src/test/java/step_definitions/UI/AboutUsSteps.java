@@ -7,8 +7,10 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import pages.AboutUsPage;
 import pages.HomePage;
+import pages.OurServicesPage;
 import pages.OurDivisionsPage;
 import utils.BrowserUtils;
 
@@ -16,11 +18,14 @@ import utils.BrowserUtils;
 
 
 public class AboutUsSteps {
+    OurServicesPage ourServicesPage;
     AboutUsPage page;
     HomePage homePage;
+    private Actions actions;
     OurDivisionsPage ourDivisionsPage;
 
     public AboutUsSteps() {
+        ourServicesPage = new OurServicesPage();
         page = new AboutUsPage();
         homePage = new HomePage();
         ourDivisionsPage = new OurDivisionsPage();
@@ -35,16 +40,18 @@ public class AboutUsSteps {
                 BrowserUtils.waitForElementVisibility(homePage.aboutUsBtns.get(0));
                 BrowserUtils.click(homePage.aboutUsBtns.get(0));
                 break;
-
+            case "our services":
+                BrowserUtils.waitForElementVisibility(homePage.servicesBtns.get(0));
+                BrowserUtils.click(homePage.servicesBtns.get(0));
+                break;
             case "our divisions":
                 BrowserUtils.waitForElementVisibility(homePage.servicesBtns.get(0));
                 BrowserUtils.click(homePage.servicesBtns.get(0));
-
+                break;
             case "contact us":
                 BrowserUtils.waitForElementVisibility(homePage.contactUsBtns.get(0));
                 BrowserUtils.click(homePage.contactUsBtns.get(0));
                 BrowserUtils.sleep(3000);
-
                 break;
             default:
                 Assert.fail("Invalid Navigation button");

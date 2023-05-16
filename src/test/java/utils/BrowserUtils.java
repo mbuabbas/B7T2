@@ -246,4 +246,11 @@ public class BrowserUtils {
         action.sendKeys(Keys.ARROW_UP).perform();
 
     }
+    // Click the element using JavaScript
+    public static void clickWithJs(WebElement element){
+        moveIntoView(element);
+        highlightElement(element);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
+
+    }
 }
