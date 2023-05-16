@@ -19,5 +19,4 @@ import org.junit.runner.RunWith;
         ,tags = "@AD-32"
 )
 public class CukesRunner {
-
 }

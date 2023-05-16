@@ -47,19 +47,24 @@ Feature: practice api
 
 
   @AD-25
-    Scenario: Delete existing student in database
-      Given The API key is "d03e989018msh7f4691c614e87a9p1a8181j"
-      And The student ID is "5f6f5a4f88158f0017c3fff2"
-      When The delete request is sent to "/api/school/resources/students/{studentId}"
-      And the response status code is 200
-
-
+  Scenario: Delete existing student in database
+    Given The API key is "d03e989018msh7f4691c614e87a9p1a8181j"
+    And The student ID is "5f6f5a4f88158f0017c3fff2"
+    When The delete request is sent to "/api/school/resources/students/{studentId}"
+    And the response status code is 200
 
 
   @AD-21
-  Scenario: Verify option to add new course to database
-    Given I perform get request to "devcourse" endpoint
-    Then Verify response status code is 200
+  Scenario Outline: Verify option to add new course to database
+    Given the "Dev" course endpoint is "https://tla-school-api.herokuapp.com/api/school/programs/devcourse"
+    When I send a POST request with body "<name>", "<duration>"
+    Then the response status code is 200
+    And the response body contains the following fields "<name>", "<duration>"
+    When I send a DELETE request to the SDET course with "<name>"
+    Examples:
+      | name        | duration |
+      | PaulP Course | 7 Months |
+
 
   @AD-23
   Scenario: Add new student
@@ -103,3 +108,22 @@ Feature: practice api
       | 7                  |
       | uransura@gmail.com |
 
+  @AD-26
+  Scenario: Get bearer token retrieval with
+    Given I perform get request to  "https://tla-school-api.herokuapp.com/api/school/departments/gettoken" with credentials:
+      | username | user    |
+      | password | user123 |
+    Then the response status code is 200
+    And Verify response should return bearer token
+
+  @AD-26
+  Scenario Outline: Error message should be returned in case credentials are invalid.
+    Given I perform get request to "https://tla-school-api.herokuapp.com/api/school/departments/gettoken" with following invalid "<username>" and "<password>"
+    And the response body contains the error message "Valid username and password required"
+    And the response status code is 401
+    Examples:
+      | username | password |
+      | user     | user$123 |
+      | 124      | @#@      |
+      | $#@      | user     |
+      | u        | 124      |

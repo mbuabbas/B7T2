@@ -250,7 +250,6 @@ public class HomeSteps {
 
     @Then("Verify {string} displayed")
     public void verifyDisplayed(String item) {
-        BrowserUtils.sleep(1000);
         switch (item) {
             case "Leadership Development":
                 BrowserUtils.assertEquals(BrowserUtils.getText(page.leadershipDev),item);
@@ -271,7 +270,6 @@ public class HomeSteps {
                 break;
             //default:
                 //Assert.fail("Invalid text");
-
         }
     }
 

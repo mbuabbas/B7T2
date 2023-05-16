@@ -8,6 +8,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.hamcrest.Matchers;
 import org.junit.Assert;
 import pages.CreateProjectPojos;
 import utils.CucumberLogUtils;
@@ -128,8 +129,7 @@ public class Api_StepDefinitions {
 
 
     @Given("I perform get request to {string} endpoint")
-    public void iPerformGetRequestToEndpoint(String endpoint)
-    {
+    public void iPerformGetRequestToEndpoint(String endpoint) {
         RestAssured.baseURI = "https://tla-school-api.herokuapp.com/api/school/programs/";
 
         Response response = RestAssured.given()
@@ -147,6 +147,7 @@ public class Api_StepDefinitions {
     public void verifyResponseStatusCodeIs(int code) {
         Assert.assertEquals(code, response.statusCode());
     }
+
     @Given("I send a POST request to {string} with body:")
     public void iSendAPOSTRequestToWithBody(String endpoint, Map<String, String> inputBody) {
         CreateProjectPojos project = new CreateProjectPojos();
@@ -191,16 +192,45 @@ public class Api_StepDefinitions {
                 .and()
                 .body(project)
                 .when()
-                .put(endpoint  + "/" + studentId)
+                .put(endpoint + "/" + studentId)
                 .then().
                 log().all()
                 .extract().response();
 
     }
 
+    @Given("I perform get request to  {string} with credentials:")
+    public void iPerformGetRequestToWithCredentials(String endpoint, Map<String,String> inputBody) {
+        String username = inputBody.get("username");
+        String password = inputBody.get("password");
+        response = RestAssured.given()
+                .header("Content-type", "application/json")
+                .auth().preemptive().basic(username, password)
+                .when()
+                .get(endpoint);
+    }
+
+    @And("Verify response should return bearer token")
+    public void verifyResponseShouldReturnBearerToken() {
+        response.then().body("token", Matchers.notNullValue());
+    }
+
+    @Given("I perform get request to {string} with following invalid {string} and {string}")
+    public void iPerformGetRequestToWithFollowingInvalidAnd(String endpoint, String username, String password) {
+        response = RestAssured.given()
+                .header("Content-type", "application/json")
+                .header("Authorization", username, password)
+                .when()
+                .get(endpoint);
+    }
+
+    @And("the response body contains the error message {string}")
+    public void theResponseBodyContainsTheErrorMessage(String expectedResponse) {
+        Assert.assertEquals(response.then().extract().body().jsonPath().get("message"), expectedResponse);
+    }
+
     @Given("I perform post request to {string} endpoint")
-    public void iPerformPostRequestToEndpoint(String path)
-    {
+    public void iPerformPostRequestToEndpoint(String path) {
         String jsonPayload = "{\"name\":\"Paul\",\"duration\":\" 7 month\"}";
         response = RestAssured.given()
                 .and()
@@ -214,9 +244,8 @@ public class Api_StepDefinitions {
                 .response();
         System.out.println(response.prettyPeek());
         System.out.println(response.jsonPath().getString("name"));
-        Assert.assertEquals(response.jsonPath().getString("name"),"Paul");
+        Assert.assertEquals(response.jsonPath().getString("name"), "Paul");
         Assert.assertEquals(response.jsonPath().getString("duration"), "7 months");
 
     }
-
 }

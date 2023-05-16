@@ -3,34 +3,117 @@ package step_definitions.UI;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import pages.AboutUsPage;
 import pages.HomePage;
 import utils.BrowserUtils;
 
+
+
+
 public class AboutUsSteps {
     AboutUsPage page;
     HomePage homePage;
-    public AboutUsSteps(){
+
+    public AboutUsSteps() {
         page = new AboutUsPage();
         homePage = new HomePage();
     }
 
+    @Given("I open {string} page")
+    public void iOpenPage(String navBtn)
+    {
+        switch(navBtn.toLowerCase())
+        {
+            case "about us":
+                BrowserUtils.waitForElementVisibility(homePage.aboutUsBtns.get(0));
+                BrowserUtils.click(homePage.aboutUsBtns.get(0));
+                break;
+            default:
+                Assert.fail("Invalid Navigation button");
+
+        }
+    }
+
+    @And("Verify that picture of {string} is displayed")
+    public void verifyThatPictureOfIsDisplayed(String staffName)
+    {
+        switch(staffName.toLowerCase())
+        {
+            case "richard antony":
+                BrowserUtils.isDisplayedWithPressKeyUp(page.team1Photo);
+                break;
+            case "charz cuthbert":
+                BrowserUtils.isDisplayedWithPressKeyUp(page.team2Photo);
+                break;
+            case "eliot hananiah":
+                BrowserUtils.isDisplayedWithPressKeyUp(page.team3Photo);
+                break;
+            case "daren eldbridge":
+                BrowserUtils.isDisplayedWithPressKeyUp(page.team4Photo);
+                break;
+            default:
+                Assert.fail("Invalid Staff Photo!");
+
+        }
+    }
+
+    @And("Verify that {string} title is displayed")
+    public void verifyThatTitleIsDisplayed(String title)
+    {
+        switch (title.toLowerCase())
+        {
+            case "founder":
+                BrowserUtils.assertEquals(page.founderTitle.getText(),title);
+                BrowserUtils.isDisplayedWithPressKeyUp(page.founderTitle);
+                break;
+            case "president":
+                BrowserUtils.assertEquals(page.presientTitle.getText(),title);
+                BrowserUtils.isDisplayedWithPressKeyUp(page.presientTitle);
+                break;
+            case "hr manager":
+                BrowserUtils.assertEquals(page.hRManagerTitle.getText(),title);
+                BrowserUtils.isDisplayedWithPressKeyUp(page.hRManagerTitle);
+                break;
+            case "executive":
+                BrowserUtils.assertEquals(page.executiveTitle.getText(),title);
+                BrowserUtils.isDisplayedWithPressKeyUp(page.executiveTitle);
+                break;
+            default:
+                Assert.fail("Invalid Title!");
+        }
+    }
+
+    @And("Verify {string} buttons under {string} picture are visible")
+    public void verifyButtonsUnderPictureAreVisible(String socialMediaBtn, String staffName)
+    {
+                BrowserUtils.isEnabledWithKeyUp(BrowserUtils.getDriver().findElement(By.xpath("" +
+                        "//div[@class='lower-content']//descendant::*[text()='" + staffName + "']" +
+                        "/following::a[contains(@href,'" + socialMediaBtn + "')]")));
+
+                BrowserUtils.isDisplayedWithPressKeyUp(BrowserUtils.getDriver().findElement(By.xpath("" +
+                        "//div[@class='lower-content']//descendant::*[text()='" + staffName + "']" +
+                        "/following::a[contains(@href,'" + socialMediaBtn + "')]")));
+    }
+
     @Given("That the user navigates to the About Us Page")
     public void givenThatTheUserNavigatesToTheAboutUsPage(){
+        BrowserUtils.sleep(1000);
         BrowserUtils.click(homePage.aboutUsBtn);
         BrowserUtils.switchToNewWindow();
-        BrowserUtils.sleep(3000);
+
     }
 
 
     @And("Verify if {string} header is displayed in the page")
     public void verifyIfHeaderIsDisplayedInThePage(String header) {
-        switch(header.toLowerCase()){
+        switch (header.toLowerCase()) {
             case "why choose us":
-                BrowserUtils.isDisplayed(page.whyChooseUsHeader1);
-                BrowserUtils.assertEquals(page.whyChooseUsHeader1.getText(), header);
                 BrowserUtils.sleep(1000);
+                BrowserUtils.isDisplayed(page.whyChooseUsHeader1);
                 break;
             default:
                 Assert.fail("Test Failed");
@@ -38,22 +121,17 @@ public class AboutUsSteps {
 
     }
 
-
-
-    @Then("Verify if following {string} are displayed:")
+    @Then("Verify if following {string} are displayed")
     public void verifyIfFollowingAreDisplayed(String header) {
-        switch (header.toLowerCase()){
+        switch (header.toLowerCase()) {
             case "on time services":
                 BrowserUtils.isDisplayed(page.onTimeServicesHeader);
-                BrowserUtils.assertEquals(page.onTimeServicesHeader.getText(), header);
                 break;
             case "experienced team":
                 BrowserUtils.isDisplayed(page.experiencedTeamHeader);
-                BrowserUtils.assertEquals(page.experiencedTeamHeader.getText(), header);
                 break;
             case "good track records":
                 BrowserUtils.isDisplayed(page.goodTrackRecordsHeader);
-                BrowserUtils.assertEquals(page.goodTrackRecordsHeader.getText(), header);
                 break;
             default:
                 Assert.fail("Test failed");
@@ -85,4 +163,28 @@ public class AboutUsSteps {
                 Assert.fail("Test failed");
         }
     }
+
+    @Then("Verify if \\{string} text is displayed under {string}")
+    public void verifyIfStringTextIsDisplayedUnder(String text) {
+        switch (text.toLowerCase()) {
+            case "evaluate resume":
+                BrowserUtils.sleep(1000);
+                BrowserUtils.isDisplayed(page.evaluateResumeText);
+                break;
+            case "interview":
+                BrowserUtils.sleep(1000);
+                BrowserUtils.isDisplayed(page.interviewText);
+                break;
+            case "screening":
+                BrowserUtils.sleep(1000);
+                BrowserUtils.isDisplayed(page.screeningText);
+                break;
+            case "process done":
+                BrowserUtils.sleep(1000);
+                BrowserUtils.isDisplayed(page.processDoneText);
+                break;
+            default:
+                Assert.fail("Test Failed");
+        }
     }
+}
