@@ -157,6 +157,8 @@ public class HomePage {
     public WebElement centerSecondaryHeader;
     @FindBy(xpath = "//div[@class='text']/p")
     public WebElement descriptionText;
+    @FindBy(xpath = "//div[@class='footer-copyright']")
+    public WebElement copyright;
 
 
 }

@@ -85,5 +85,11 @@ public class AboutUsPage {
     public WebElement screeningText;
     @FindBy(xpath = "//section[@class='working-process sp-two']//div[4]//div[1]//div[2]")
     public WebElement processDoneText;
+    @FindBy(xpath = "//h2[normalize-space()='Welcome to Advance Systems LLC.']")
+    public WebElement header;
+    @FindBy(xpath = "//h4[normalize-space()='Kuba Z']")
+    public WebElement name;
+    @FindBy(xpath = "//div[normalize-space()='CEO & Founder']")
+    public WebElement title;
 }
 

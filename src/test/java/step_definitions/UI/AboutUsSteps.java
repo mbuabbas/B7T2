@@ -274,6 +274,21 @@ public class AboutUsSteps {
         BrowserUtils.assertEquals(actualHeader,header);
         BrowserUtils.assertTrue(!description.equals(""));
     }
-}
 
+
+        @Then("Verify that it contain name {string} and title {string}")
+        public void VerifyThatItContainNameAndTitle(String name, String title){
+        String actualText1 = BrowserUtils.getText(page.name);
+        String actualText2 = BrowserUtils.getText(page.title);
+        BrowserUtils.assertEquals(actualText1, name);
+        BrowserUtils.assertEquals(actualText2, title);
+        }
+
+
+
+    @Then("Verify main header “Welcome to Advance Systems LLC.” is displayed")
+    public void verifyMainHeaderWelcomeToAdvanceSystemsLLCIsDisplayed() {
+        BrowserUtils.isDisplayed(page.header);
+    }
+}
 

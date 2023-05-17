@@ -89,3 +89,9 @@ Feature: AboutUs Page Scenarios
     And Verify Under Expert section a header text "We are Recruitment Experts" is displayed
     When I click on "Our Services" button
     Then Verify "Our Services" button takes the user to the Services page
+  @AD-28
+  Scenario: Verify that main header and name and title are displayed
+//    Then Verify main header  is displayed
+      Then Verify main header “Welcome to Advance Systems LLC.” is displayed
+      Then Verify that it contain name "Kuba Z" and title "CEO & Founder"
+
