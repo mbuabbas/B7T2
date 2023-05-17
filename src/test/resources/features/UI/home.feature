@@ -150,3 +150,7 @@ Feature: Home scenarios
     Then Verify "Welcome to Advance Systems LLC." text is displayed
     And Verify "Our Mission is simple, deliver very honest recruitment services to every customer." text is displayed
     And Verify "Description" text is displayed
+
+    @AD-18
+    Scenario: Verify the copyright
+      Then Verify copyright text in the bottom of the page updated with "Copyright © 2023 Advance Systems LLC. All Rights Reserved."

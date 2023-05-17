@@ -483,4 +483,9 @@ public class HomeSteps {
         }
     }
 
+    @Then("Verify copyright text in the bottom of the page updated with {string}")
+    public void verifyCopyrightTextInTheBottomOfThePageUpdatedWith(String text) {
+        String actualText = BrowserUtils.getText(page.copyright);
+        BrowserUtils.assertEquals(actualText, text);
+    }
 }
